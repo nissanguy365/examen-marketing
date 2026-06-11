@@ -4,11 +4,9 @@ Examen de práctica autocorregible sobre los **Temas III, IV, V y VI**: segmenta
 
 ## 👉 Hacer el examen
 
-Una vez activado GitHub Pages, el examen estará disponible en:
+**➡️ https://nissanguy365.github.io/examen-marketing/**
 
-**https://USUARIO.github.io/examen-marketing/**
-
-(sustituye `USUARIO` por tu usuario de GitHub)
+Abre el enlace en cualquier navegador (móvil u ordenador) y empieza el examen.
 
 ## Contenido
 
