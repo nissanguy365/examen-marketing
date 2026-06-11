@@ -35,107 +35,43 @@
     border-bottom:3px solid var(--rojo);
     box-shadow:0 6px 22px rgba(0,0,0,.45);
   }
-  header.top h1{
-    margin:0;
-    font-size:30px;
-    letter-spacing:.4px;
-    text-shadow:0 2px 6px rgba(0,0,0,.5);
-  }
-  header.top p{
-    margin:6px 0 0;
-    color:#d8e0ee;
-    font-size:16px;
-    font-style:italic;
+  header.top h1{margin:0;font-size:30px;letter-spacing:.4px;text-shadow:0 2px 6px rgba(0,0,0,.5);}
+  header.top p{margin:6px 0 0;color:#d8e0ee;font-size:16px;font-style:italic;}
+  .dynamic-tag{
+    display:inline-block;margin-top:10px;background:rgba(0,0,0,.28);
+    border:1px solid rgba(255,255,255,.25);border-radius:20px;
+    padding:4px 14px;font-size:14px;font-family:Arial,sans-serif;font-style:normal;
   }
   .wrap{max-width:1000px;margin:0 auto;padding:0 18px;}
 
-  /* Barra fija superior: temporizador + progreso */
-  .hud{
-    position:sticky;
-    top:0;
-    z-index:50;
-    background:rgba(13,22,38,.93);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--borde);
-    padding:12px 18px;
-    box-shadow:0 4px 16px rgba(0,0,0,.4);
-  }
-  .hud-inner{
-    max-width:1000px;margin:0 auto;
-    display:flex;align-items:center;gap:18px;flex-wrap:wrap;
-  }
-  .timer{
-    font-size:24px;font-weight:bold;
-    background:var(--azul);
-    border:2px solid var(--rojo);
-    padding:6px 16px;border-radius:10px;
-    min-width:120px;text-align:center;
-    letter-spacing:1px;
-  }
+  .hud{position:sticky;top:0;z-index:50;background:rgba(13,22,38,.93);backdrop-filter:blur(6px);border-bottom:1px solid var(--borde);padding:12px 18px;box-shadow:0 4px 16px rgba(0,0,0,.4);}
+  .hud-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  .timer{font-size:24px;font-weight:bold;background:var(--azul);border:2px solid var(--rojo);padding:6px 16px;border-radius:10px;min-width:120px;text-align:center;letter-spacing:1px;}
   .timer.warning{animation:pulse 1s infinite;border-color:#ffb300;}
   .timer.danger{background:var(--rojo);animation:pulse .7s infinite;}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
   .timer-label{font-size:12px;color:var(--texto-suave);display:block;font-weight:normal;letter-spacing:0;}
   .progress-zone{flex:1;min-width:200px;}
   .progress-text{font-size:13px;color:var(--texto-suave);margin-bottom:4px;display:flex;justify-content:space-between;}
-  .bar{
-    height:14px;background:#0a1322;border:1px solid var(--borde);
-    border-radius:8px;overflow:hidden;
-  }
-  .bar-fill{
-    height:100%;width:0%;
-    background:linear-gradient(90deg,var(--azul-claro),var(--rojo));
-    transition:width .4s ease;
-  }
+  .bar{height:14px;background:#0a1322;border:1px solid var(--borde);border-radius:8px;overflow:hidden;}
+  .bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--azul-claro),var(--rojo));transition:width .4s ease;}
 
-  section.bloque{
-    background:var(--panel);
-    border:1px solid var(--borde);
-    border-left:5px solid var(--rojo);
-    border-radius:12px;
-    margin:26px 0;
-    padding:20px 24px 8px;
-    box-shadow:0 4px 18px rgba(0,0,0,.35);
-  }
-  section.bloque > h2{
-    margin:0 0 4px;
-    color:#fff;
-    font-size:23px;
-  }
+  section.bloque{background:var(--panel);border:1px solid var(--borde);border-left:5px solid var(--rojo);border-radius:12px;margin:26px 0;padding:20px 24px 8px;box-shadow:0 4px 18px rgba(0,0,0,.35);}
+  section.bloque > h2{margin:0 0 4px;color:#fff;font-size:23px;}
   .seccion-desc{color:var(--texto-suave);font-style:italic;margin:0 0 14px;font-size:15px;}
-  .badge{
-    display:inline-block;background:var(--rojo);color:#fff;
-    font-size:13px;padding:2px 10px;border-radius:20px;margin-left:8px;
-    vertical-align:middle;font-family:Arial, sans-serif;
-  }
+  .badge{display:inline-block;background:var(--rojo);color:#fff;font-size:13px;padding:2px 10px;border-radius:20px;margin-left:8px;vertical-align:middle;font-family:Arial, sans-serif;}
 
-  .preg{
-    background:var(--panel2);
-    border:1px solid var(--borde);
-    border-radius:10px;
-    padding:14px 18px;
-    margin:14px 0;
-    transition:border-color .3s, background .3s;
-  }
+  .preg{background:var(--panel2);border:1px solid var(--borde);border-radius:10px;padding:14px 18px;margin:14px 0;transition:border-color .3s, background .3s;}
   .preg .q{font-size:17px;margin:0 0 10px;font-weight:bold;}
   .preg .q .num{color:var(--rojo-claro);margin-right:6px;}
 
-  /* Opciones V/F y multiple */
   .opciones{display:flex;flex-direction:column;gap:8px;}
   .opciones.vf{flex-direction:row;gap:14px;}
-  label.opt{
-    display:flex;align-items:center;gap:10px;
-    background:#0f1a2c;border:1px solid var(--borde);
-    padding:9px 14px;border-radius:8px;cursor:pointer;
-    transition:background .2s,border-color .2s;
-    font-size:16px;
-  }
+  label.opt{display:flex;align-items:center;gap:10px;background:#0f1a2c;border:1px solid var(--borde);padding:9px 14px;border-radius:8px;cursor:pointer;transition:background .2s,border-color .2s;font-size:16px;}
   label.opt:hover{background:#16243c;border-color:var(--azul-claro);}
   .opciones.vf label.opt{flex:1;justify-content:center;font-weight:bold;}
   label.opt input{accent-color:var(--rojo);width:17px;height:17px;cursor:pointer;}
   label.opt.sel{border-color:var(--rojo);background:#1d2c46;}
-
-  /* Estados de corrección */
   label.opt.correcta{border-color:var(--verde);background:var(--verde-bg);}
   label.opt.incorrecta{border-color:var(--rojo);background:var(--rojo-bg);}
   .marca{margin-left:auto;font-weight:bold;font-family:Arial,sans-serif;font-size:14px;}
@@ -144,58 +80,24 @@
   .preg.bien{border-color:var(--verde);}
   .preg.mal{border-color:var(--rojo);}
 
-  /* Desarrollo */
-  textarea{
-    width:100%;min-height:120px;resize:vertical;
-    background:#0f1a2c;color:var(--texto);
-    border:1px solid var(--borde);border-radius:8px;
-    padding:12px;font-family:"Times New Roman",serif;font-size:16px;line-height:1.5;
-  }
+  textarea{width:100%;min-height:120px;resize:vertical;background:#0f1a2c;color:var(--texto);border:1px solid var(--borde);border-radius:8px;padding:12px;font-family:"Times New Roman",serif;font-size:16px;line-height:1.5;}
   textarea:focus{outline:none;border-color:var(--azul-claro);box-shadow:0 0 0 2px rgba(44,79,138,.4);}
-  .modelo{
-    display:none;margin-top:12px;
-    background:var(--verde-bg);
-    border:1px solid var(--verde);
-    border-radius:8px;padding:12px 16px;
-  }
+  .modelo{display:none;margin-top:12px;background:var(--verde-bg);border:1px solid var(--verde);border-radius:8px;padding:12px 16px;}
   .modelo h4{margin:0 0 6px;color:#5fe09a;font-family:Arial,sans-serif;font-size:14px;text-transform:uppercase;letter-spacing:.5px;}
   .modelo p{margin:6px 0;font-size:15px;}
   .modelo ul{margin:6px 0;padding-left:20px;}
 
-  /* Botones */
   .acciones{text-align:center;margin:34px 0 10px;}
-  button.btn{
-    font-family:"Times New Roman",serif;
-    font-size:20px;font-weight:bold;
-    background:var(--rojo);color:#fff;
-    border:none;border-radius:10px;
-    padding:14px 40px;cursor:pointer;
-    box-shadow:0 5px 16px rgba(181,18,27,.4);
-    transition:transform .15s, background .2s;
-    letter-spacing:.5px;
-  }
+  button.btn{font-family:"Times New Roman",serif;font-size:20px;font-weight:bold;background:var(--rojo);color:#fff;border:none;border-radius:10px;padding:14px 40px;cursor:pointer;box-shadow:0 5px 16px rgba(181,18,27,.4);transition:transform .15s, background .2s;letter-spacing:.5px;}
   button.btn:hover{background:var(--rojo-claro);transform:translateY(-2px);}
   button.btn:disabled{background:#555;cursor:not-allowed;box-shadow:none;transform:none;}
   button.btn.secundario{background:var(--azul);box-shadow:0 5px 16px rgba(31,56,100,.4);}
   button.btn.secundario:hover{background:var(--azul-claro);}
 
-  /* Panel de resultados */
-  #resultado{
-    display:none;
-    position:sticky;top:64px;z-index:40;
-    background:linear-gradient(120deg,var(--azul),#16273f);
-    border:2px solid var(--rojo);
-    border-radius:14px;
-    padding:22px 26px;margin:24px 0;
-    box-shadow:0 8px 30px rgba(0,0,0,.5);
-    text-align:center;
-  }
+  #resultado{display:none;position:sticky;top:64px;z-index:40;background:linear-gradient(120deg,var(--azul),#16273f);border:2px solid var(--rojo);border-radius:14px;padding:22px 26px;margin:24px 0;box-shadow:0 8px 30px rgba(0,0,0,.5);text-align:center;}
   #resultado h2{margin:0 0 10px;font-size:26px;}
   .score-grid{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:14px 0;}
-  .score-card{
-    background:rgba(0,0,0,.28);border:1px solid var(--borde);
-    border-radius:10px;padding:14px 22px;min-width:160px;
-  }
+  .score-card{background:rgba(0,0,0,.28);border:1px solid var(--borde);border-radius:10px;padding:14px 22px;min-width:160px;}
   .score-card .big{font-size:34px;font-weight:bold;display:block;}
   .score-card .lbl{font-size:13px;color:#cdd7e8;font-family:Arial,sans-serif;}
   .nota-final{font-size:20px;margin-top:8px;}
@@ -209,21 +111,15 @@
   <div class="wrap">
     <h1>Examen de Marketing Estratégico y Operativo</h1>
     <p>Temas III, IV, V y VI — Segmentación, Posicionamiento, Producto, Precio, Distribución y Comunicación</p>
+    <span class="dynamic-tag">🎲 Examen dinámico — preguntas distintas en cada intento</span>
   </div>
 </header>
 
-<!-- HUD: temporizador + barra de progreso -->
 <div class="hud">
   <div class="hud-inner">
-    <div class="timer" id="timer">
-      45:00
-      <span class="timer-label">Tiempo restante</span>
-    </div>
+    <div class="timer" id="timer">45:00<span class="timer-label">Tiempo restante</span></div>
     <div class="progress-zone">
-      <div class="progress-text">
-        <span>Progreso del examen</span>
-        <span id="progPct">0% — 0 / 23 respondidas</span>
-      </div>
+      <div class="progress-text"><span>Progreso del examen</span><span id="progPct">0% — 0 / 23 respondidas</span></div>
       <div class="bar"><div class="bar-fill" id="barFill"></div></div>
     </div>
   </div>
@@ -231,149 +127,181 @@
 
 <div class="wrap">
 
-  <!-- Panel de resultados (aparece al terminar) -->
   <div id="resultado">
     <h2>Resultados del examen</h2>
     <div class="score-grid">
-      <div class="score-card">
-        <span class="big" id="scVF">0/10</span>
-        <span class="lbl">Sección 1 · Verdadero o Falso</span>
-      </div>
-      <div class="score-card">
-        <span class="big" id="scMC">0/10</span>
-        <span class="lbl">Sección 2 · Selección Múltiple</span>
-      </div>
-      <div class="score-card">
-        <span class="big" id="scTotal">0/20</span>
-        <span class="lbl">Total autocorregido</span>
-      </div>
+      <div class="score-card"><span class="big" id="scVF">0/10</span><span class="lbl">Sección 1 · Verdadero o Falso</span></div>
+      <div class="score-card"><span class="big" id="scMC">0/10</span><span class="lbl">Sección 2 · Selección Múltiple</span></div>
+      <div class="score-card"><span class="big" id="scTotal">0/20</span><span class="lbl">Total autocorregido</span></div>
     </div>
     <div class="nota-final" id="notaFinal"></div>
-    <p class="aviso">La Sección 3 (Desarrollo) no se autocorrige. Debajo de cada pregunta abierta encontrarás una <strong>respuesta modelo sugerida</strong> para comparar con la tuya.</p>
+    <p class="aviso">La Sección 3 (Desarrollo) no se autocorrige. Bajo cada pregunta abierta tienes una <strong>respuesta modelo sugerida</strong>. Pulsa «Nuevo examen» para generar otro con preguntas diferentes.</p>
   </div>
 
-  <!-- ================= SECCIÓN 1 ================= -->
   <section class="bloque" id="sec1">
     <h2>Sección 1 — Verdadero o Falso <span class="badge">10 preguntas</span></h2>
     <p class="seccion-desc">Marca si cada afirmación es Verdadera (V) o Falsa (F).</p>
     <div id="contVF"></div>
   </section>
 
-  <!-- ================= SECCIÓN 2 ================= -->
   <section class="bloque" id="sec2">
     <h2>Sección 2 — Selección Múltiple <span class="badge">10 preguntas</span></h2>
     <p class="seccion-desc">Selecciona la opción correcta (una sola respuesta por pregunta).</p>
     <div id="contMC"></div>
   </section>
 
-  <!-- ================= SECCIÓN 3 ================= -->
   <section class="bloque" id="sec3">
     <h2>Sección 3 — Desarrollo <span class="badge">3 preguntas</span></h2>
-    <p class="seccion-desc">Responde de forma argumentada en el campo de texto. Estas preguntas no se autocorrigen; al ver los resultados se mostrará una respuesta modelo.</p>
-
-    <div class="preg">
-      <p class="q"><span class="num">1.</span>Explica la diferencia entre <strong>misión y visión</strong> de una empresa. Después, transforma la siguiente misión orientada al producto en una <strong>orientada al mercado</strong>: «Fabricamos aire acondicionado y calentadores».</p>
-      <textarea placeholder="Escribe aquí tu respuesta..."></textarea>
-      <div class="modelo">
-        <h4>Respuesta modelo sugerida</h4>
-        <p><strong>Misión:</strong> es «lo que hacemos» cada día; establece a quién vendemos, qué ofrecemos y cómo lo hacemos. Responde a preguntas como ¿cuál es nuestro negocio?, ¿quiénes son nuestros clientes? Opera en el largo plazo y debe ser breve y fácil de recordar.</p>
-        <p><strong>Visión:</strong> es la guía de la misión; el sueño, aspiración o meta futura de la organización. Si todo va bien, describe cómo la empresa habrá cambiado el mundo en los próximos 5–10 años. Debe ser amplia de miras, excitante y atrayente (ej.: Sony → «sistemas de sonido portables y personales para todo el mundo»).</p>
-        <p><strong>Transformación al mercado:</strong> en lugar de «Fabricamos aire acondicionado y calentadores» (orientación al producto), una misión orientada al mercado sería: <em>«Proporcionamos control sobre el clima en los hogares»</em>. Se enfoca en la <strong>necesidad</strong> que se satisface, no en el producto, porque los productos son perecederos y cambiantes, pero las necesidades no.</p>
-      </div>
-    </div>
-
-    <div class="preg">
-      <p class="q"><span class="num">2.</span>Describe los <strong>cuatro criterios clásicos de segmentación de mercado</strong> y pon un ejemplo de variable de cada uno. Indica además qué requisitos debe cumplir un <strong>segmento ideal</strong> para ser útil a la empresa (targeting).</p>
-      <textarea placeholder="Escribe aquí tu respuesta..."></textarea>
-      <div class="modelo">
-        <h4>Respuesta modelo sugerida</h4>
-        <ul>
-          <li><strong>Geográfica:</strong> divide el mercado por país, región, ciudad, barrio, densidad de población o clima.</li>
-          <li><strong>Demográfica:</strong> edad y ciclo de vida, género, ingresos, ocupación, educación, religión, etnia, generación. Es la más popular por su facilidad de medición.</li>
-          <li><strong>Psicográfica:</strong> estilo de vida, personalidad y valores (factores AIO: Actividades, Intereses, Opiniones).</li>
-          <li><strong>Conductual:</strong> ocasiones, beneficios buscados, estatus del usuario, tasa de utilización, roles de compra y estatus de lealtad. Muchos expertos la consideran el mejor punto de partida.</li>
-        </ul>
-        <p><strong>Requisitos del segmento ideal:</strong> basado en distintas necesidades de los consumidores, diferente a otros segmentos, alineado con las fortalezas de la empresa, sostenible en el tiempo, con clientes identificables y financieramente satisfactorio. La selección se hace según el atractivo del mercado (tamaño, crecimiento) y la fuerza competitiva de la empresa.</p>
-      </div>
-    </div>
-
-    <div class="preg">
-      <p class="q"><span class="num">3.</span>Explica qué miden los siguientes <strong>KPIs de rendimiento</strong> y por qué son útiles: <strong>CAC, LTV, ROI y NPS</strong>. ¿Por qué es importante la relación entre el LTV y el CAC?</p>
-      <textarea placeholder="Escribe aquí tu respuesta..."></textarea>
-      <div class="modelo">
-        <h4>Respuesta modelo sugerida</h4>
-        <ul>
-          <li><strong>CAC (Coste de Adquisición de Cliente):</strong> cuánto cuesta de media captar un nuevo cliente (inversión en marketing y ventas dividida entre los clientes nuevos conseguidos).</li>
-          <li><strong>LTV (Lifetime Value o valor del ciclo de vida):</strong> el beneficio total que un cliente aporta a la empresa durante toda su relación con la marca.</li>
-          <li><strong>ROI (Retorno de la Inversión):</strong> mide la rentabilidad de una acción o inversión = (beneficio obtenido − inversión) / inversión. Indica si lo invertido genera ganancia.</li>
-          <li><strong>NPS (Net Promoter Score):</strong> mide la satisfacción y lealtad preguntando qué probabilidad hay de que el cliente recomiende la marca; distingue promotores, pasivos y detractores.</li>
-        </ul>
-        <p><strong>Relación LTV/CAC:</strong> el negocio es sostenible cuando el valor que aporta un cliente (LTV) supera claramente lo que cuesta captarlo (CAC). Una referencia habitual es LTV ≈ 3 veces el CAC. Si el CAC se acerca o supera al LTV, la empresa pierde dinero por cada cliente, lo que obliga a mejorar la retención/fidelización (clientes leales promueven la marca de forma contagiosa) o a reducir el coste de captación.</p>
-      </div>
-    </div>
+    <p class="seccion-desc">Responde de forma argumentada. No se autocorrigen; al ver los resultados se mostrará una respuesta modelo.</p>
+    <div id="contDEV"></div>
   </section>
 
   <div class="acciones">
     <button class="btn" id="btnVer">Ver resultados</button>
-    <button class="btn secundario" id="btnReiniciar" style="display:none;">Reiniciar examen</button>
+    <button class="btn secundario" id="btnReiniciar" style="display:none;">Nuevo examen aleatorio</button>
   </div>
 
   <footer>
     Universidad Europea del Atlántico · Marketing Estratégico y Operativo · Temas III–VI.<br>
-    Examen interactivo de práctica — duración recomendada: 45 minutos.
+    Examen interactivo de práctica dinámico — duración recomendada: 45 minutos.
   </footer>
 </div>
 
 <script>
-/* ===================== DATOS ===================== */
+/* ===================== BANCOS DE PREGUNTAS ===================== */
 
-// Sección 1: Verdadero / Falso  (resp: true = Verdadero, false = Falso)
-const vf = [
-  {q:"La misión establece el objetivo último de una compañía y responde a la pregunta de en qué negocio estamos.", r:true},
+// --- Verdadero / Falso ---  r:true = Verdadero
+const bankVF = [
+  {q:"La misión establece el objetivo último de una compañía y responde a en qué negocio estamos.", r:true},
   {q:"La visión es lo que la empresa hace cada día, mientras que la misión es el sueño o meta futura de la organización.", r:false},
-  {q:"La segmentación conductual divide el mercado según ocasiones, beneficios buscados, estatus del usuario, tasa de utilización y lealtad.", r:true},
-  {q:"Los Puntos de Paridad (POP/PDP) son atributos exclusivos que diferencian a una marca de toda la competencia.", r:false},
-  {q:"La propuesta de valor para el cliente se basa en la diferencia entre el beneficio total y el coste total percibidos por el consumidor.", r:true},
-  {q:"La estrategia de liderazgo en costes de Porter consiste en ofrecer un producto percibido como único a un precio premium.", r:false},
-  {q:"En la etapa de madurez del ciclo de vida del producto, el crecimiento se ralentiza y el mercado se vuelve muy competitivo.", r:true},
-  {q:"El buyer persona es una representación semi-ficticia y detallada del cliente ideal, más concreta y rica que el target.", r:true},
-  {q:"La distribución intensiva busca estar presente en el mayor número posible de puntos de venta.", r:true},
-  {q:"En la estrategia pull (tirar), el productor empuja el producto a través del canal mediante incentivos y márgenes altos a los minoristas.", r:false}
+  {q:"Una misión orientada al mercado se centra en las necesidades que satisface, no en el producto concreto.", r:true},
+  {q:"Los productos son perecederos y cambiantes, pero las necesidades de los clientes no.", r:true},
+  {q:"Una buena declaración de misión debe ser larga y abarcar el mayor número de metas posible.", r:false},
+  {q:"En el análisis DAFO, las oportunidades y las amenazas son factores externos a la empresa.", r:true},
+  {q:"Las 3 C del análisis de situación son Clientes, Compañía y Competencia.", r:true},
+  {q:"Los objetivos de marketing deben ser cualitativos y evitar ser medibles.", r:false},
+  {q:"La estrategia de diferenciación de Porter busca fabricar al coste más bajo del sector.", r:false},
+  {q:"Una empresa 'atrapada en el medio' no logra ni el liderazgo en costes ni una diferenciación clara.", r:true},
+  {q:"El liderazgo en costes es una estrategia fácilmente imitable por empresas con muchos recursos.", r:true},
+  {q:"La estrategia de enfoque (alta segmentación) se dirige a todo el mercado por igual.", r:false},
+  {q:"En segmentación se debe segmentar siempre según descriptores (edad, género) y no según necesidades.", r:false},
+  {q:"La segmentación geográfica divide el mercado por países, regiones, ciudades o barrios.", r:true},
+  {q:"La segmentación demográfica es de las más populares por su utilidad y facilidad de medición.", r:true},
+  {q:"La segmentación psicográfica se basa en los factores AIO: Actividades, Intereses y Opiniones.", r:true},
+  {q:"En la segmentación conductual, el 'estatus de lealtad' agrupa a los consumidores según su fidelidad a la marca.", r:true},
+  {q:"Un nicho es un mercado masivo y amplio con necesidades muy generales.", r:false},
+  {q:"El marketing indiferenciado (masivo) ignora los distintos segmentos y ofrece la misma oferta a todos.", r:true},
+  {q:"Un segmento ideal debe ser, entre otras cosas, financieramente satisfactorio e identificable.", r:true},
+  {q:"El posicionamiento consiste en ocupar un lugar único en la mente del consumidor objetivo.", r:true},
+  {q:"Los Puntos de Diferencia (POD/PDD) son atributos compartidos con la competencia.", r:false},
+  {q:"Los Puntos de Paridad (POP/PDP) son atributos que se comparten con otras marcas de la categoría.", r:true},
+  {q:"La propuesta de valor es la diferencia entre el beneficio total y el coste total para el consumidor.", r:true},
+  {q:"El beneficio total para el consumidor incluye beneficios funcionales, psicológicos y financieros.", r:true},
+  {q:"El mantra de marca es un eslogan orientado al consumidor externo.", r:false},
+  {q:"El ciclo de vida del producto tiene cuatro etapas: introducción, crecimiento, madurez y declive.", r:true},
+  {q:"En la etapa de introducción los precios suelen ser bajos y las ventas muy altas.", r:false},
+  {q:"En la etapa de declive las ventas y los beneficios caen y algunas empresas abandonan el mercado.", r:true},
+  {q:"El precio es la única de las 4 P que genera ingresos; las demás generan costes.", r:true},
+  {q:"Un buyer persona es una representación semi-ficticia y detallada del cliente ideal, más concreta que el target.", r:true},
+  {q:"El producto esperado se corresponde con los Puntos de Paridad (PDP) y el producto aumentado con los de Diferencia (PDD).", r:true},
+  {q:"Los productos de conveniencia se compran con frecuencia, poca planificación y suelen tener distribución intensiva.", r:true},
+  {q:"Los productos de especialidad tienen alta sensibilidad al precio y distribución intensiva.", r:false},
+  {q:"El co-branding combina dos o más marcas ya conocidas en un producto o campaña conjunta.", r:true},
+  {q:"La demanda inelástica significa que los consumidores son muy sensibles a los cambios de precio.", r:false},
+  {q:"Los costes fijos o de estructura varían directamente con el nivel de producción.", r:false},
+  {q:"El método de fijación de precios por márgenes ignora la demanda, el valor percibido y la competencia.", r:true},
+  {q:"El precio de penetración consiste en fijar un precio bajo para maximizar la cuota de mercado.", r:true},
+  {q:"El descremado del mercado fija precios altos al inicio que luego bajan, dando sensación de producto superior.", r:true},
+  {q:"En el canal de distribución directo no hay intermediarios entre el productor y el consumidor.", r:true},
+  {q:"La distribución exclusiva busca estar presente en el mayor número de puntos de venta posible.", r:false},
+  {q:"En la estrategia push el productor empuja el producto por el canal con incentivos al minorista.", r:true},
+  {q:"En la estrategia pull el productor crea demanda en el consumidor final para que este exija el producto.", r:true},
+  {q:"La venta personal es la herramienta del mix de comunicación con mayor nivel de interacción (bidireccional).", r:true},
+  {q:"La publicidad tiene un alcance masivo y sirve para crear notoriedad de marca (awareness).", r:true},
+  {q:"Las relaciones públicas buscan gestionar la reputación y la aceptación de los públicos de forma creíble.", r:true},
+  {q:"El merchandising es el conjunto de técnicas en el punto de venta para estimular la compra y la rentabilidad.", r:true}
 ];
 
-// Sección 2: Selección múltiple (correcta = índice de la opción correcta)
-const mc = [
-  {q:"¿Cuál de los siguientes NO es un criterio clásico de segmentación de mercado?",
-   o:["Geográfico","Demográfico","Psicográfico","Financiero-contable"], c:3},
-  {q:"La segmentación que divide a los consumidores según su estilo de vida, personalidad y valores (factores AIO) es la:",
-   o:["Geográfica","Demográfica","Psicográfica","Conductual"], c:2},
-  {q:"Las siglas STP del enfoque de estrategia de marketing corresponden a:",
-   o:["Segmentación, Targeting y Posicionamiento","Servicio, Tarifa y Promoción","Segmentación, Tienda y Precio","Servicio, Targeting y Posición"], c:0},
-  {q:"¿Cuál es un requisito que debe cumplir un segmento ideal para el targeting?",
-   o:["Ser lo más amplio posible y atender a todos","Ser financieramente satisfactorio e identificable","No diferenciarse de otros segmentos","Tener las mismas necesidades que el resto del mercado"], c:1},
-  {q:"Una buena declaración de posicionamiento debe especificar:",
-   o:["Únicamente el precio del producto","Solo los costes de producción","Quiénes son los clientes, qué necesidades satisface y por qué es la mejor opción","La nómina del equipo de ventas"], c:2},
-  {q:"Según las estrategias competitivas de Porter, ofrecer un producto percibido como único en los atributos que el cliente valora corresponde a:",
-   o:["Liderazgo en costes","Diferenciación","Enfoque en bajo precio","Estar 'atrapado en el medio'"], c:1},
-  {q:"¿En qué etapa del ciclo de vida del producto los precios suelen ser elevados y los vendedores se centran en encontrar nuevos clientes y promover pruebas de producto?",
-   o:["Introducción","Crecimiento","Madurez","Declive"], c:0},
-  {q:"Las 4 P del marketing mix son:",
-   o:["Producto, Personas, Proceso y Precio","Producto, Precio, Plaza (distribución) y Promoción (comunicación)","Plaza, Precio, Publicidad y Promesa","Producto, Precio, Posición y Persona"], c:1},
-  {q:"En la distribución, la estrategia 'push' (empujar) se caracteriza por:",
-   o:["Crear demanda en el consumidor final mediante publicidad masiva","Empujar el producto a través del canal con incentivos al minorista y fuerza de ventas","Eliminar todos los intermediarios del canal","Vender exclusivamente por internet"], c:1},
-  {q:"Dentro del mix de comunicación comercial, la herramienta con máximo nivel de interacción (bidireccional), ideal para B2B y productos de alto valor, es:",
-   o:["La publicidad","La promoción de ventas","La venta personal","Las relaciones públicas"], c:2}
+// --- Selección múltiple ---  c = índice de la opción correcta
+const bankMC = [
+  {q:"¿Cuál de los siguientes NO es un criterio clásico de segmentación de mercado?", o:["Geográfico","Demográfico","Psicográfico","Financiero-contable"], c:3},
+  {q:"La segmentación que divide a los consumidores según estilo de vida, personalidad y valores (factores AIO) es la:", o:["Geográfica","Demográfica","Psicográfica","Conductual"], c:2},
+  {q:"Las siglas STP corresponden a:", o:["Segmentación, Targeting y Posicionamiento","Servicio, Tarifa y Promoción","Segmentación, Tienda y Precio","Servicio, Targeting y Posición"], c:0},
+  {q:"¿Cuál es un requisito que debe cumplir un segmento ideal para el targeting?", o:["Ser lo más amplio posible y atender a todos","Ser financieramente satisfactorio e identificable","No diferenciarse de otros segmentos","Tener las mismas necesidades que el resto del mercado"], c:1},
+  {q:"Una buena declaración de posicionamiento debe especificar:", o:["Únicamente el precio del producto","Solo los costes de producción","Quiénes son los clientes, qué necesidades satisface y por qué es la mejor opción","La nómina del equipo de ventas"], c:2},
+  {q:"Según Porter, ofrecer un producto percibido como único en los atributos que el cliente valora corresponde a:", o:["Liderazgo en costes","Diferenciación","Enfoque en bajo precio","Estar 'atrapado en el medio'"], c:1},
+  {q:"¿En qué etapa del ciclo de vida los precios suelen ser elevados y los vendedores buscan nuevos clientes y pruebas de producto?", o:["Introducción","Crecimiento","Madurez","Declive"], c:0},
+  {q:"Las 4 P del marketing mix son:", o:["Producto, Personas, Proceso y Precio","Producto, Precio, Plaza (distribución) y Promoción (comunicación)","Plaza, Precio, Publicidad y Promesa","Producto, Precio, Posición y Persona"], c:1},
+  {q:"En la distribución, la estrategia 'push' (empujar) se caracteriza por:", o:["Crear demanda en el consumidor final con publicidad masiva","Empujar el producto por el canal con incentivos al minorista y fuerza de ventas","Eliminar todos los intermediarios del canal","Vender exclusivamente por internet"], c:1},
+  {q:"Dentro del mix de comunicación, la herramienta con máximo nivel de interacción (bidireccional), ideal para B2B y productos de alto valor, es:", o:["La publicidad","La promoción de ventas","La venta personal","Las relaciones públicas"], c:2},
+  {q:"En el proceso de creación de valor, 'elegir el valor' implica que la empresa debe:", o:["Fijar precios y características del producto","Segmentar el mercado, elegir su target y posicionar su oferta","Comunicar la oferta por publicidad","Distribuir el producto físicamente"], c:1},
+  {q:"En el análisis DAFO, las fortalezas y las debilidades son factores:", o:["Internos de la empresa","Externos del entorno","Exclusivos de la competencia","Solo financieros"], c:0},
+  {q:"La estrategia competitiva de Porter que consiste en fabricar a un coste más bajo que los competidores es:", o:["Diferenciación","Liderazgo en costes","Enfoque en diferenciación","Posicionamiento bidireccional"], c:1},
+  {q:"Las 'bases' de la segmentación son:", o:["Las características observables como edad o renta","Las necesidades y beneficios que buscan los consumidores","El número de competidores del sector","Los canales de distribución disponibles"], c:1},
+  {q:"Atender a un único segmento mediante marketing concentrado, logrando profundo conocimiento de sus necesidades, es:", o:["Marketing indiferenciado","Cobertura total del mercado","Especialización en un único segmento (nicho)","Marketing masivo"], c:2},
+  {q:"La propuesta de valor para el cliente se define como:", o:["El coste de fabricación del producto","El beneficio total menos el coste total para el consumidor","El precio de venta menos los impuestos","La inversión en publicidad"], c:1},
+  {q:"Los Puntos de Diferencia (POD/PDD) son:", o:["Atributos compartidos con toda la competencia","Atributos valorados que el cliente cree no encontrar igual en otra marca","El precio mínimo del producto","Requisitos legales del producto"], c:1},
+  {q:"Los Puntos de Paridad (POP/PDP) son:", o:["Atributos exclusivos de una sola marca","Atributos o asociaciones compartidos con otras marcas de la categoría","El margen de beneficio del fabricante","Las debilidades de la competencia"], c:1},
+  {q:"En la jerarquía de valor del producto, el nivel central (más interno) es:", o:["El producto aumentado","El producto potencial","El beneficio fundamental","El producto esperado"], c:2},
+  {q:"La clasificación de producto con fuerte lealtad de marca, baja sensibilidad al precio y distribución exclusiva es:", o:["De conveniencia","De compra","De especialidad","No buscado"], c:2},
+  {q:"El precio dentro de las 4 P se caracteriza porque:", o:["Es la única variable que genera ingresos/beneficios","Nunca puede modificarse","Siempre debe ser el más bajo del mercado","No influye en la decisión del consumidor"], c:0},
+  {q:"Una demanda elástica (E > 1) significa que:", o:["Los consumidores son muy sensibles al precio","Los consumidores no reaccionan al precio","El precio no afecta a las ventas","La demanda es constante"], c:0},
+  {q:"El coste total de un producto se calcula como:", o:["Costes fijos menos costes variables","Costes fijos más costes variables","Precio menos margen","Solo los costes variables"], c:1},
+  {q:"Fijar un precio inicial muy alto en una novedad tecnológica, que luego baja, dando sensación de producto superior, es:", o:["Precio de penetración","Descremado del mercado","Precio de supervivencia","Precio de referencia"], c:1},
+  {q:"El canal de distribución con dos o más intermediarios (p. ej. mayorista y minorista) se denomina:", o:["Canal directo","Canal corto","Canal largo","Canal exclusivo"], c:2},
+  {q:"Buscar la presencia en el mayor número posible de puntos de venta corresponde a la distribución:", o:["Exclusiva","Selectiva","Intensiva","Directa"], c:2},
+  {q:"La herramienta del mix de comunicación basada en incentivos temporales (cupones, 2x1, muestras) a corto plazo es:", o:["La publicidad","La venta personal","La promoción de ventas","Las relaciones públicas"], c:2},
+  {q:"La estrategia 'pull' (tirar) se basa en:", o:["Empujar el producto al canal con descuentos al minorista","Crear demanda en el consumidor final para que exija el producto","Eliminar la publicidad","Vender solo a empresas (B2B)"], c:1},
+  {q:"El KPI que mide cuánto cuesta de media captar un nuevo cliente es:", o:["LTV","NPS","CAC","ROI"], c:2},
+  {q:"El KPI que mide el valor total que un cliente aporta durante toda su relación con la marca es:", o:["CAC","LTV (valor del ciclo de vida)","NPS","CPC"], c:1},
+  {q:"El formato minorista de gran superficie especializada que domina todo un sector (IKEA, Leroy Merlin) se conoce como:", o:["Tienda de conveniencia","Category killer","Tienda de descuento","Gran almacén"], c:1},
+  {q:"En el proceso de comunicación comercial, transformar la idea corporativa en símbolos, imágenes o lenguaje publicitario es la:", o:["Descodificación","Codificación","Retroalimentación (feedback)","Recepción"], c:1},
+  {q:"El NPS (Net Promoter Score) mide principalmente:", o:["El coste por clic de la publicidad","La satisfacción y probabilidad de que el cliente recomiende la marca","El número de unidades producidas","El margen de beneficio unitario"], c:1},
+  {q:"La distribución exclusiva es la más adecuada para:", o:["Productos de primera necesidad y compra por impulso","Productos de lujo, alta implicación y servicio postventa crítico","Cualquier producto de consumo masivo","Productos sin marca"], c:1}
 ];
+
+// --- Desarrollo ---  modelo = respuesta sugerida (HTML)
+const bankDEV = [
+  {q:"Explica la diferencia entre <strong>misión y visión</strong> de una empresa. Después, transforma esta misión orientada al producto en una <strong>orientada al mercado</strong>: «Fabricamos aire acondicionado y calentadores».",
+   modelo:`<p><strong>Misión:</strong> es «lo que hacemos» cada día; define a quién vendemos, qué ofrecemos y cómo. Responde a ¿cuál es nuestro negocio? y ¿quiénes son nuestros clientes? Opera a largo plazo y debe ser breve.</p><p><strong>Visión:</strong> es la guía de la misión; el sueño o meta futura. Describe cómo la empresa habrá cambiado el mundo en 5–10 años; debe ser amplia, excitante y atrayente.</p><p><strong>Transformación al mercado:</strong> «Proporcionamos control sobre el clima en los hogares». Se enfoca en la necesidad, no en el producto, porque los productos cambian pero las necesidades no.</p>`},
+  {q:"Describe los <strong>cuatro criterios clásicos de segmentación</strong> con un ejemplo de cada uno, e indica qué requisitos debe cumplir un <strong>segmento ideal</strong> para el targeting.",
+   modelo:`<ul><li><strong>Geográfica:</strong> país, región, ciudad, barrio, clima.</li><li><strong>Demográfica:</strong> edad, ciclo de vida, género, ingresos, ocupación, generación.</li><li><strong>Psicográfica:</strong> estilo de vida, personalidad y valores (factores AIO).</li><li><strong>Conductual:</strong> ocasiones, beneficios buscados, estatus del usuario, tasa de uso, lealtad.</li></ul><p><strong>Segmento ideal:</strong> basado en distintas necesidades, diferente a otros, alineado con las fortalezas de la empresa, sostenible, con clientes identificables y financieramente satisfactorio.</p>`},
+  {q:"Explica qué miden los <strong>KPIs CAC, LTV, ROI y NPS</strong> y por qué es importante la relación entre el LTV y el CAC.",
+   modelo:`<ul><li><strong>CAC:</strong> coste medio de adquirir un nuevo cliente.</li><li><strong>LTV:</strong> beneficio total que aporta un cliente durante toda su relación con la marca.</li><li><strong>ROI:</strong> rentabilidad de una inversión = (beneficio − inversión) / inversión.</li><li><strong>NPS:</strong> satisfacción/lealtad según la probabilidad de recomendar la marca.</li></ul><p><strong>LTV/CAC:</strong> el negocio es sostenible cuando el valor del cliente (LTV) supera claramente lo que cuesta captarlo (CAC); referencia habitual ≈ 3:1. Si el CAC se acerca al LTV, se pierde dinero por cliente y hay que mejorar retención o reducir el coste de captación.</p>`},
+  {q:"Describe las <strong>tres estrategias competitivas de Porter</strong>, pon un ejemplo de cada una e indica un riesgo asociado.",
+   modelo:`<ul><li><strong>Liderazgo en costes:</strong> fabricar al coste más bajo (ej. Bic, McDonald's, Ikea). Riesgo: guerra de precios, fácil de imitar, descuidar al cliente.</li><li><strong>Diferenciación:</strong> producto percibido como único en atributos valorados (ej. Mercedes, Bang & Olufsen). Riesgo: diferenciar algo que el cliente no valora o un precio demasiado alto.</li><li><strong>Enfoque / alta segmentación:</strong> cubrir un segmento concreto, en costes o diferenciación (ej. Porsche, Prenatal). Riesgo: que el nicho se reduzca o sea atacado.</li></ul><p>Quien no logra ninguna queda «atrapado en el medio».</p>`},
+  {q:"Explica las <strong>cuatro etapas del ciclo de vida del producto</strong> y qué ocurre con las ventas, los precios y la competencia en cada una.",
+   modelo:`<ul><li><strong>Introducción:</strong> producto nuevo, ventas bajas, precios elevados; se buscan nuevos clientes y pruebas de producto.</li><li><strong>Crecimiento:</strong> el producto gana aceptación, las ventas se expanden, los clientes empiezan a sensibilizarse al precio.</li><li><strong>Madurez:</strong> el crecimiento se ralentiza, el mercado se vuelve muy competitivo, la competencia en precio reduce beneficios.</li><li><strong>Declive:</strong> caen ventas y beneficios; las empresas con mayores costes o sin ventaja abandonan el mercado.</li></ul>`},
+  {q:"Define los <strong>Puntos de Diferencia (POD) y los Puntos de Paridad (POP)</strong> y explica qué debe especificar una <strong>declaración de posicionamiento</strong>, con un ejemplo.",
+   modelo:`<p><strong>POD/PDD:</strong> atributos valorados que los consumidores asocian fuertemente a una marca y creen no encontrar igual en la competencia (ej. Duracell = pilas que más duran).</p><p><strong>POP/PDP:</strong> atributos o asociaciones compartidos con otras marcas de la categoría (los esenciales para pertenecer a ella).</p><p><strong>Declaración de posicionamiento:</strong> debe especificar <em>quiénes</em> son los clientes, <em>qué</em> necesidad satisface el producto y <em>por qué</em> es la mejor opción frente a la competencia. Ej. Nutri-Grain: «Para personas sin tiempo, es la barrita saludable que comes mientras trabajas, porque está hecha con fruta auténtica…».</p>`},
+  {q:"Explica el concepto de <strong>propuesta de valor</strong> (beneficio total vs. coste total) y describe al menos tres posiciones de la matriz beneficios/precio (p. ej. «más por más», «más por menos», «lo mismo por menos»).",
+   modelo:`<p><strong>Propuesta de valor:</strong> diferencia entre el <strong>beneficio total</strong> (funcional, psicológico y financiero que el cliente espera) y el <strong>coste total</strong> (de evaluar, obtener, usar y deshacerse de la oferta). La empresa aumenta el valor subiendo beneficios y/o reduciendo costes.</p><ul><li><strong>Más por más:</strong> más beneficios a mayor precio (lujo).</li><li><strong>Más por menos:</strong> más beneficios a menor precio (muy favorable).</li><li><strong>Lo mismo por menos:</strong> mismos beneficios, precio inferior.</li><li><strong>Menos por mucho menos:</strong> oferta reducida a precio muy bajo.</li></ul><p>Las posiciones de «menos por más / lo mismo por más» son desfavorables.</p>`},
+  {q:"Describe las <strong>4 P del marketing mix</strong> e indica una decisión clave de cada una.",
+   modelo:`<ul><li><strong>Producto:</strong> cualquier cosa ofertada para satisfacer una necesidad; decisiones de atributos, branding, calidad y jerarquía de valor (básico, esperado, aumentado, potencial).</li><li><strong>Precio:</strong> única P que genera ingresos; decisiones de estrategia (penetración, descremado), método (márgenes, ROI, valor percibido) y psicología del precio.</li><li><strong>Plaza (distribución):</strong> poner el producto a disposición; decisiones de canal (directo/corto/largo) y cobertura (intensiva/selectiva/exclusiva).</li><li><strong>Promoción (comunicación):</strong> dar a conocer la oferta; mix de publicidad, venta personal, promoción de ventas y RRPP, y estrategia push/pull.</li></ul>`},
+  {q:"Explica la diferencia entre la estrategia <strong>push y pull</strong> en distribución, y describe los tres tipos de <strong>cobertura/intensidad de distribución</strong>.",
+   modelo:`<p><strong>Push (empujar):</strong> el productor empuja el producto por el canal mediante incentivos, márgenes y fuerza de ventas hacia el minorista; comunicación sesgada a B2B y promociones al comercio.</p><p><strong>Pull (tirar):</strong> el productor crea demanda en el consumidor final (publicidad masiva, brand awareness) para que este exija el producto al minorista, que entonces lo pide.</p><p><strong>Cobertura:</strong></p><ul><li><strong>Intensiva:</strong> máximo número de puntos de venta (productos de conveniencia).</li><li><strong>Selectiva:</strong> número reducido y filtrado de intermediarios (moda, electrónica).</li><li><strong>Exclusiva:</strong> un único intermediario por zona (lujo, servicio postventa crítico).</li></ul>`},
+  {q:"Explica la diferencia entre <strong>target y buyer persona</strong> y por qué es útil definir un buyer persona.",
+   modelo:`<p><strong>Target (público objetivo):</strong> el segmento o grupo de mercado al que se dirige la empresa, descrito con variables generales (geográficas, demográficas, etc.). Es amplio y estadístico.</p><p><strong>Buyer persona:</strong> representación semi-ficticia y muy detallada del cliente ideal dentro de ese target: nombre, edad, motivaciones, necesidades, frustraciones, hábitos y proceso de compra. Es más concreto y «humano».</p><p><strong>Utilidad:</strong> ayuda a personalizar el mensaje, los productos y los canales, a empatizar con el cliente y a tomar decisiones de marketing más afinadas que con un target genérico.</p>`}
+];
+
+/* ===================== CONSTRUCCIÓN ALEATORIA DEL EXAMEN ===================== */
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function pick(arr,n){return shuffle(arr.slice()).slice(0,n);}
+
+const examVF = pick(bankVF,10);
+const examMC = pick(bankMC,10).map(it=>{
+  const opts = it.o.map((t,idx)=>({text:t, correct: idx===it.c}));
+  shuffle(opts);
+  return {q:it.q, opts};
+});
+const examDEV = pick(bankDEV,3);
 
 /* ===================== RENDER ===================== */
-const contVF = document.getElementById('contVF');
-vf.forEach((item,i)=>{
+const contVF=document.getElementById('contVF');
+examVF.forEach((item,i)=>{
   const div=document.createElement('div');
-  div.className='preg';
-  div.dataset.tipo='vf';
-  div.dataset.idx=i;
-  div.innerHTML=`
-    <p class="q"><span class="num">${i+1}.</span>${item.q}</p>
+  div.className='preg';div.dataset.tipo='vf';div.dataset.idx=i;
+  div.innerHTML=`<p class="q"><span class="num">${i+1}.</span>${item.q}</p>
     <div class="opciones vf">
       <label class="opt"><input type="radio" name="vf${i}" value="true"><span>Verdadero</span></label>
       <label class="opt"><input type="radio" name="vf${i}" value="false"><span>Falso</span></label>
@@ -381,47 +309,47 @@ vf.forEach((item,i)=>{
   contVF.appendChild(div);
 });
 
-const contMC = document.getElementById('contMC');
-mc.forEach((item,i)=>{
+const contMC=document.getElementById('contMC');
+examMC.forEach((item,i)=>{
   const div=document.createElement('div');
-  div.className='preg';
-  div.dataset.tipo='mc';
-  div.dataset.idx=i;
+  div.className='preg';div.dataset.tipo='mc';div.dataset.idx=i;
   let opts='';
-  item.o.forEach((op,j)=>{
+  item.opts.forEach((op,j)=>{
     const letra=String.fromCharCode(97+j);
-    opts+=`<label class="opt"><input type="radio" name="mc${i}" value="${j}"><span>${letra}) ${op}</span></label>`;
+    opts+=`<label class="opt"><input type="radio" name="mc${i}" value="${j}"><span>${letra}) ${op.text}</span></label>`;
   });
-  div.innerHTML=`
-    <p class="q"><span class="num">${i+1}.</span>${item.q}</p>
-    <div class="opciones">${opts}</div>`;
+  div.innerHTML=`<p class="q"><span class="num">${i+1}.</span>${item.q}</p><div class="opciones">${opts}</div>`;
   contMC.appendChild(div);
 });
 
-/* ===================== INTERACCIÓN: selección visual + progreso ===================== */
-const totalPreg = vf.length + mc.length + 3; // 23
-let finalizado = false;
+const contDEV=document.getElementById('contDEV');
+examDEV.forEach((item,i)=>{
+  const div=document.createElement('div');
+  div.className='preg';
+  div.innerHTML=`<p class="q"><span class="num">${i+1}.</span>${item.q}</p>
+    <textarea placeholder="Escribe aquí tu respuesta..."></textarea>
+    <div class="modelo"><h4>Respuesta modelo sugerida</h4>${item.modelo}</div>`;
+  contDEV.appendChild(div);
+});
+
+/* ===================== INTERACCIÓN Y PROGRESO ===================== */
+const totalPreg = examVF.length + examMC.length + examDEV.length; // 23
+let finalizado=false;
 
 document.querySelectorAll('label.opt input').forEach(inp=>{
   inp.addEventListener('change',()=>{
     if(finalizado) return;
-    // resalta selección dentro del grupo
-    const name=inp.name;
-    document.querySelectorAll(`input[name="${name}"]`).forEach(o=>{
-      o.closest('label.opt').classList.toggle('sel', o.checked);
-    });
+    document.querySelectorAll(`input[name="${inp.name}"]`).forEach(o=>o.closest('label.opt').classList.toggle('sel',o.checked));
     actualizarProgreso();
   });
 });
-document.querySelectorAll('#sec3 textarea').forEach(t=>{
-  t.addEventListener('input', actualizarProgreso);
-});
+document.querySelectorAll('#sec3 textarea').forEach(t=>t.addEventListener('input',actualizarProgreso));
 
 function contarRespondidas(){
   let n=0;
-  vf.forEach((_,i)=>{ if(document.querySelector(`input[name="vf${i}"]:checked`)) n++; });
-  mc.forEach((_,i)=>{ if(document.querySelector(`input[name="mc${i}"]:checked`)) n++; });
-  document.querySelectorAll('#sec3 textarea').forEach(t=>{ if(t.value.trim().length>0) n++; });
+  examVF.forEach((_,i)=>{if(document.querySelector(`input[name="vf${i}"]:checked`))n++;});
+  examMC.forEach((_,i)=>{if(document.querySelector(`input[name="mc${i}"]:checked`))n++;});
+  document.querySelectorAll('#sec3 textarea').forEach(t=>{if(t.value.trim().length>0)n++;});
   return n;
 }
 function actualizarProgreso(){
@@ -431,132 +359,89 @@ function actualizarProgreso(){
   document.getElementById('progPct').textContent=`${pct}% — ${n} / ${totalPreg} respondidas`;
 }
 
-/* ===================== TEMPORIZADOR 45 min ===================== */
-let restante = 45*60;
+/* ===================== TEMPORIZADOR ===================== */
+let restante=45*60;
 const timerEl=document.getElementById('timer');
 function pintaTimer(){
-  const m=Math.floor(restante/60), s=restante%60;
+  const m=Math.floor(restante/60),s=restante%60;
   timerEl.childNodes[0].nodeValue=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-  timerEl.classList.toggle('warning', restante<=300 && restante>60);
-  timerEl.classList.toggle('danger', restante<=60);
+  timerEl.classList.toggle('warning',restante<=300&&restante>60);
+  timerEl.classList.toggle('danger',restante<=60);
 }
 pintaTimer();
 const intv=setInterval(()=>{
   if(finalizado){clearInterval(intv);return;}
   restante--;
-  if(restante<=0){
-    restante=0;pintaTimer();clearInterval(intv);
-    corregir(true);
-    return;
-  }
+  if(restante<=0){restante=0;pintaTimer();clearInterval(intv);corregir(true);return;}
   pintaTimer();
 },1000);
 
 /* ===================== CORRECCIÓN ===================== */
 document.getElementById('btnVer').addEventListener('click',()=>{
   const n=contarRespondidas();
-  if(n<totalPreg){
-    if(!confirm(`Has respondido ${n} de ${totalPreg} preguntas. ¿Seguro que quieres ver los resultados?`)) return;
-  }
+  if(n<totalPreg && !confirm(`Has respondido ${n} de ${totalPreg} preguntas. ¿Seguro que quieres ver los resultados?`)) return;
   corregir(false);
 });
 
 function corregir(porTiempo){
   if(finalizado) return;
-  finalizado=true;
-  clearInterval(intv);
-
-  // bloquear inputs
+  finalizado=true;clearInterval(intv);
   document.querySelectorAll('label.opt input').forEach(i=>i.disabled=true);
   document.querySelectorAll('#sec3 textarea').forEach(t=>t.disabled=true);
 
-  let aciertosVF=0, aciertosMC=0;
+  let aciertosVF=0,aciertosMC=0;
 
-  // Corregir V/F
-  vf.forEach((item,i)=>{
+  examVF.forEach((item,i)=>{
     const preg=document.querySelector(`.preg[data-tipo="vf"][data-idx="${i}"]`);
     const sel=document.querySelector(`input[name="vf${i}"]:checked`);
     const correctaVal=String(item.r);
     document.querySelectorAll(`input[name="vf${i}"]`).forEach(inp=>{
-      const lab=inp.closest('label.opt');
-      lab.classList.remove('sel');
-      if(inp.value===correctaVal){
-        lab.classList.add('correcta');
-        lab.insertAdjacentHTML('beforeend','<span class="marca ok">✓ correcta</span>');
-      }
+      const lab=inp.closest('label.opt');lab.classList.remove('sel');
+      if(inp.value===correctaVal){lab.classList.add('correcta');lab.insertAdjacentHTML('beforeend','<span class="marca ok">✓ correcta</span>');}
     });
     if(sel){
       if(sel.value===correctaVal){aciertosVF++;preg.classList.add('bien');}
-      else{
-        preg.classList.add('mal');
-        const lab=sel.closest('label.opt');
-        lab.classList.add('incorrecta');
-        lab.insertAdjacentHTML('beforeend','<span class="marca no">✗ tu respuesta</span>');
-      }
-    }else{
-      preg.classList.add('mal');
-    }
+      else{preg.classList.add('mal');const lab=sel.closest('label.opt');lab.classList.add('incorrecta');lab.insertAdjacentHTML('beforeend','<span class="marca no">✗ tu respuesta</span>');}
+    }else preg.classList.add('mal');
   });
 
-  // Corregir Múltiple
-  mc.forEach((item,i)=>{
+  examMC.forEach((item,i)=>{
     const preg=document.querySelector(`.preg[data-tipo="mc"][data-idx="${i}"]`);
     const sel=document.querySelector(`input[name="mc${i}"]:checked`);
     document.querySelectorAll(`input[name="mc${i}"]`).forEach(inp=>{
-      const lab=inp.closest('label.opt');
-      lab.classList.remove('sel');
-      if(parseInt(inp.value)===item.c){
-        lab.classList.add('correcta');
-        lab.insertAdjacentHTML('beforeend','<span class="marca ok">✓ correcta</span>');
-      }
+      const lab=inp.closest('label.opt');lab.classList.remove('sel');
+      if(item.opts[parseInt(inp.value)].correct){lab.classList.add('correcta');lab.insertAdjacentHTML('beforeend','<span class="marca ok">✓ correcta</span>');}
     });
     if(sel){
-      if(parseInt(sel.value)===item.c){aciertosMC++;preg.classList.add('bien');}
-      else{
-        preg.classList.add('mal');
-        const lab=sel.closest('label.opt');
-        lab.classList.add('incorrecta');
-        lab.insertAdjacentHTML('beforeend','<span class="marca no">✗ tu respuesta</span>');
-      }
-    }else{
-      preg.classList.add('mal');
-    }
+      if(item.opts[parseInt(sel.value)].correct){aciertosMC++;preg.classList.add('bien');}
+      else{preg.classList.add('mal');const lab=sel.closest('label.opt');lab.classList.add('incorrecta');lab.insertAdjacentHTML('beforeend','<span class="marca no">✗ tu respuesta</span>');}
+    }else preg.classList.add('mal');
   });
 
-  // Mostrar respuestas modelo de la sección 3
   document.querySelectorAll('#sec3 .modelo').forEach(m=>m.style.display='block');
 
-  // Pintar panel de resultados
   const total=aciertosVF+aciertosMC;
   document.getElementById('scVF').textContent=`${aciertosVF}/10`;
   document.getElementById('scMC').textContent=`${aciertosMC}/10`;
   document.getElementById('scTotal').textContent=`${total}/20`;
   const nota=(total/20*10).toFixed(1);
   let msg=`Nota autocorregida: <strong>${nota}/10</strong>`;
-  if(total>=18) msg+=' — ¡Excelente!';
-  else if(total>=14) msg+=' — Buen resultado.';
-  else if(total>=10) msg+=' — Aprobado, sigue repasando.';
+  if(total>=18)msg+=' — ¡Excelente!';
+  else if(total>=14)msg+=' — Buen resultado.';
+  else if(total>=10)msg+=' — Aprobado, sigue repasando.';
   else msg+=' — Necesitas repasar los temas.';
-  if(porTiempo) msg='⏰ Se acabó el tiempo. '+msg;
+  if(porTiempo)msg='⏰ Se acabó el tiempo. '+msg;
   document.getElementById('notaFinal').innerHTML=msg;
 
-  const panel=document.getElementById('resultado');
-  panel.style.display='block';
-
+  const panel=document.getElementById('resultado');panel.style.display='block';
   document.getElementById('btnVer').disabled=true;
   document.getElementById('btnVer').textContent='Examen corregido';
   document.getElementById('btnReiniciar').style.display='inline-block';
-
-  // completar barra de progreso
   document.getElementById('barFill').style.width='100%';
-
   panel.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
-document.getElementById('btnReiniciar').addEventListener('click',()=>{
-  if(confirm('¿Reiniciar el examen? Se borrarán todas tus respuestas.')) location.reload();
-});
-
+document.getElementById('btnReiniciar').addEventListener('click',()=>{location.reload();});
 actualizarProgreso();
 </script>
 </body>
