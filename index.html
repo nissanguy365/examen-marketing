@@ -1,103 +1,144 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Examen Interactivo de Marketing Estratégico y Operativo</title>
 <style>
+  /* ===== MODO CLARO (por defecto) ===== */
   :root{
     --azul:#1F3864;
     --azul-claro:#2c4f8a;
     --rojo:#B5121B;
     --rojo-claro:#d4252f;
-    --fondo:#0d1626;
-    --panel:#152033;
-    --panel2:#1b2942;
+    --texto:#1b2433;
+    --texto-suave:#5d6a7e;
+    --panel:#ffffff;
+    --panel2:#f5f8fd;
+    --opt-bg:#f7f9fd;
+    --opt-hover:#eaf1fb;
+    --borde:#d3dcea;
+    --hud-bg:rgba(255,255,255,.93);
+    --body-bg:radial-gradient(circle at 20% 0%, #ffffff 0%, #e8edf6 65%);
+    --verde:#157a41;
+    --verde-bg:rgba(21,122,65,.12);
+    --rojo-bg:rgba(181,18,27,.10);
+    --info-bg:rgba(31,56,100,.07);
+    --sombra:0 4px 18px rgba(31,56,100,.12);
+  }
+  /* ===== MODO OSCURO ===== */
+  html[data-theme="dark"]{
     --texto:#e8edf5;
     --texto-suave:#a9b6cc;
-    --verde:#1e8e4e;
-    --verde-bg:rgba(30,142,78,.18);
-    --rojo-bg:rgba(181,18,27,.18);
+    --panel:#152033;
+    --panel2:#1b2942;
+    --opt-bg:#0f1a2c;
+    --opt-hover:#16243c;
     --borde:#27374f;
+    --hud-bg:rgba(13,22,38,.93);
+    --body-bg:radial-gradient(circle at 20% 0%, #16233b 0%, #0d1626 55%);
+    --verde:#46d07f;
+    --verde-bg:rgba(30,142,78,.18);
+    --rojo-bg:rgba(181,18,27,.20);
+    --info-bg:rgba(108,140,200,.12);
+    --sombra:0 4px 18px rgba(0,0,0,.35);
   }
+
   *{box-sizing:border-box;}
   body{
     margin:0;
     font-family:"Times New Roman", Times, serif;
-    background:radial-gradient(circle at 20% 0%, #16233b 0%, var(--fondo) 55%);
+    background:var(--body-bg);
     color:var(--texto);
     line-height:1.55;
     padding-bottom:60px;
+    transition:background .3s, color .3s;
   }
   header.top{
     background:linear-gradient(120deg, var(--azul) 0%, #16273f 60%, var(--rojo) 160%);
     padding:28px 24px 22px;
     border-bottom:3px solid var(--rojo);
-    box-shadow:0 6px 22px rgba(0,0,0,.45);
+    box-shadow:0 6px 22px rgba(0,0,0,.30);
+    color:#fff;
   }
   header.top h1{margin:0;font-size:30px;letter-spacing:.4px;text-shadow:0 2px 6px rgba(0,0,0,.5);}
-  header.top p{margin:6px 0 0;color:#d8e0ee;font-size:16px;font-style:italic;}
+  header.top p{margin:6px 0 0;color:#dde4f0;font-size:16px;font-style:italic;}
   .dynamic-tag{
     display:inline-block;margin-top:10px;background:rgba(0,0,0,.28);
-    border:1px solid rgba(255,255,255,.25);border-radius:20px;
-    padding:4px 14px;font-size:14px;font-family:Arial,sans-serif;font-style:normal;
+    border:1px solid rgba(255,255,255,.30);border-radius:20px;
+    padding:4px 14px;font-size:14px;font-family:Arial,sans-serif;font-style:normal;color:#fff;
   }
   .wrap{max-width:1000px;margin:0 auto;padding:0 18px;}
 
-  .hud{position:sticky;top:0;z-index:50;background:rgba(13,22,38,.93);backdrop-filter:blur(6px);border-bottom:1px solid var(--borde);padding:12px 18px;box-shadow:0 4px 16px rgba(0,0,0,.4);}
-  .hud-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
-  .timer{font-size:24px;font-weight:bold;background:var(--azul);border:2px solid var(--rojo);padding:6px 16px;border-radius:10px;min-width:120px;text-align:center;letter-spacing:1px;}
+  .hud{position:sticky;top:0;z-index:50;background:var(--hud-bg);backdrop-filter:blur(6px);border-bottom:1px solid var(--borde);padding:12px 18px;box-shadow:0 4px 16px rgba(0,0,0,.15);}
+  .hud-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .timer{font-size:24px;font-weight:bold;background:var(--azul);color:#fff;border:2px solid var(--rojo);padding:6px 16px;border-radius:10px;min-width:120px;text-align:center;letter-spacing:1px;}
   .timer.warning{animation:pulse 1s infinite;border-color:#ffb300;}
   .timer.danger{background:var(--rojo);animation:pulse .7s infinite;}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
-  .timer-label{font-size:12px;color:var(--texto-suave);display:block;font-weight:normal;letter-spacing:0;}
-  .progress-zone{flex:1;min-width:200px;}
+  .timer-label{font-size:12px;color:#cdd7e8;display:block;font-weight:normal;letter-spacing:0;}
+  .progress-zone{flex:1;min-width:180px;}
   .progress-text{font-size:13px;color:var(--texto-suave);margin-bottom:4px;display:flex;justify-content:space-between;}
-  .bar{height:14px;background:#0a1322;border:1px solid var(--borde);border-radius:8px;overflow:hidden;}
+  .bar{height:14px;background:var(--opt-bg);border:1px solid var(--borde);border-radius:8px;overflow:hidden;}
   .bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--azul-claro),var(--rojo));transition:width .4s ease;}
+  .theme-btn{
+    font-family:Arial,sans-serif;font-size:14px;cursor:pointer;
+    background:var(--panel);color:var(--texto);border:1px solid var(--borde);
+    border-radius:20px;padding:7px 14px;white-space:nowrap;transition:background .2s;
+  }
+  .theme-btn:hover{background:var(--opt-hover);}
 
-  section.bloque{background:var(--panel);border:1px solid var(--borde);border-left:5px solid var(--rojo);border-radius:12px;margin:26px 0;padding:20px 24px 8px;box-shadow:0 4px 18px rgba(0,0,0,.35);}
-  section.bloque > h2{margin:0 0 4px;color:#fff;font-size:23px;}
+  section.bloque{background:var(--panel);border:1px solid var(--borde);border-left:5px solid var(--rojo);border-radius:12px;margin:26px 0;padding:20px 24px 8px;box-shadow:var(--sombra);}
+  section.bloque > h2{margin:0 0 4px;font-size:23px;color:var(--azul);}
+  html[data-theme="dark"] section.bloque > h2{color:#fff;}
   .seccion-desc{color:var(--texto-suave);font-style:italic;margin:0 0 14px;font-size:15px;}
   .badge{display:inline-block;background:var(--rojo);color:#fff;font-size:13px;padding:2px 10px;border-radius:20px;margin-left:8px;vertical-align:middle;font-family:Arial, sans-serif;}
 
   .preg{background:var(--panel2);border:1px solid var(--borde);border-radius:10px;padding:14px 18px;margin:14px 0;transition:border-color .3s, background .3s;}
   .preg .q{font-size:17px;margin:0 0 10px;font-weight:bold;}
-  .preg .q .num{color:var(--rojo-claro);margin-right:6px;}
+  .preg .q .num{color:var(--rojo);margin-right:6px;}
 
   .opciones{display:flex;flex-direction:column;gap:8px;}
   .opciones.vf{flex-direction:row;gap:14px;}
-  label.opt{display:flex;align-items:center;gap:10px;background:#0f1a2c;border:1px solid var(--borde);padding:9px 14px;border-radius:8px;cursor:pointer;transition:background .2s,border-color .2s;font-size:16px;}
-  label.opt:hover{background:#16243c;border-color:var(--azul-claro);}
+  label.opt{display:flex;align-items:center;gap:10px;background:var(--opt-bg);border:1px solid var(--borde);padding:9px 14px;border-radius:8px;cursor:pointer;transition:background .2s,border-color .2s;font-size:16px;}
+  label.opt:hover{background:var(--opt-hover);border-color:var(--azul-claro);}
   .opciones.vf label.opt{flex:1;justify-content:center;font-weight:bold;}
   label.opt input{accent-color:var(--rojo);width:17px;height:17px;cursor:pointer;}
-  label.opt.sel{border-color:var(--rojo);background:#1d2c46;}
+  label.opt.sel{border-color:var(--rojo);background:var(--opt-hover);}
   label.opt.correcta{border-color:var(--verde);background:var(--verde-bg);}
   label.opt.incorrecta{border-color:var(--rojo);background:var(--rojo-bg);}
   .marca{margin-left:auto;font-weight:bold;font-family:Arial,sans-serif;font-size:14px;}
-  .marca.ok{color:#46d07f;}
-  .marca.no{color:#ff5b66;}
+  .marca.ok{color:var(--verde);}
+  .marca.no{color:var(--rojo);}
   .preg.bien{border-color:var(--verde);}
   .preg.mal{border-color:var(--rojo);}
 
-  textarea{width:100%;min-height:120px;resize:vertical;background:#0f1a2c;color:var(--texto);border:1px solid var(--borde);border-radius:8px;padding:12px;font-family:"Times New Roman",serif;font-size:16px;line-height:1.5;}
-  textarea:focus{outline:none;border-color:var(--azul-claro);box-shadow:0 0 0 2px rgba(44,79,138,.4);}
+  .explicacion{
+    display:none;margin-top:10px;font-size:15px;
+    background:var(--info-bg);border-left:3px solid var(--azul-claro);
+    border-radius:6px;padding:9px 13px;
+  }
+  .explicacion .et{font-family:Arial,sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--azul-claro);font-weight:bold;display:block;margin-bottom:2px;}
+  html[data-theme="dark"] .explicacion .et{color:#8fb0ee;}
+
+  textarea{width:100%;min-height:120px;resize:vertical;background:var(--opt-bg);color:var(--texto);border:1px solid var(--borde);border-radius:8px;padding:12px;font-family:"Times New Roman",serif;font-size:16px;line-height:1.5;}
+  textarea:focus{outline:none;border-color:var(--azul-claro);box-shadow:0 0 0 2px rgba(44,79,138,.3);}
   .modelo{display:none;margin-top:12px;background:var(--verde-bg);border:1px solid var(--verde);border-radius:8px;padding:12px 16px;}
-  .modelo h4{margin:0 0 6px;color:#5fe09a;font-family:Arial,sans-serif;font-size:14px;text-transform:uppercase;letter-spacing:.5px;}
+  .modelo h4{margin:0 0 6px;color:var(--verde);font-family:Arial,sans-serif;font-size:14px;text-transform:uppercase;letter-spacing:.5px;}
   .modelo p{margin:6px 0;font-size:15px;}
   .modelo ul{margin:6px 0;padding-left:20px;}
 
   .acciones{text-align:center;margin:34px 0 10px;}
-  button.btn{font-family:"Times New Roman",serif;font-size:20px;font-weight:bold;background:var(--rojo);color:#fff;border:none;border-radius:10px;padding:14px 40px;cursor:pointer;box-shadow:0 5px 16px rgba(181,18,27,.4);transition:transform .15s, background .2s;letter-spacing:.5px;}
+  button.btn{font-family:"Times New Roman",serif;font-size:20px;font-weight:bold;background:var(--rojo);color:#fff;border:none;border-radius:10px;padding:14px 40px;cursor:pointer;box-shadow:0 5px 16px rgba(181,18,27,.35);transition:transform .15s, background .2s;letter-spacing:.5px;}
   button.btn:hover{background:var(--rojo-claro);transform:translateY(-2px);}
-  button.btn:disabled{background:#555;cursor:not-allowed;box-shadow:none;transform:none;}
-  button.btn.secundario{background:var(--azul);box-shadow:0 5px 16px rgba(31,56,100,.4);}
+  button.btn:disabled{background:#999;cursor:not-allowed;box-shadow:none;transform:none;}
+  button.btn.secundario{background:var(--azul);box-shadow:0 5px 16px rgba(31,56,100,.35);}
   button.btn.secundario:hover{background:var(--azul-claro);}
 
-  #resultado{display:none;position:sticky;top:64px;z-index:40;background:linear-gradient(120deg,var(--azul),#16273f);border:2px solid var(--rojo);border-radius:14px;padding:22px 26px;margin:24px 0;box-shadow:0 8px 30px rgba(0,0,0,.5);text-align:center;}
+  #resultado{display:none;position:sticky;top:64px;z-index:40;background:linear-gradient(120deg,var(--azul),#16273f);border:2px solid var(--rojo);border-radius:14px;padding:22px 26px;margin:24px 0;box-shadow:0 8px 30px rgba(0,0,0,.35);text-align:center;color:#fff;}
   #resultado h2{margin:0 0 10px;font-size:26px;}
   .score-grid{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:14px 0;}
-  .score-card{background:rgba(0,0,0,.28);border:1px solid var(--borde);border-radius:10px;padding:14px 22px;min-width:160px;}
+  .score-card{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:14px 22px;min-width:160px;}
   .score-card .big{font-size:34px;font-weight:bold;display:block;}
   .score-card .lbl{font-size:13px;color:#cdd7e8;font-family:Arial,sans-serif;}
   .nota-final{font-size:20px;margin-top:8px;}
@@ -122,6 +163,7 @@
       <div class="progress-text"><span>Progreso del examen</span><span id="progPct">0% — 0 / 23 respondidas</span></div>
       <div class="bar"><div class="bar-fill" id="barFill"></div></div>
     </div>
+    <button class="theme-btn" id="themeBtn" title="Cambiar tema">🌙 Modo oscuro</button>
   </div>
 </div>
 
@@ -135,7 +177,7 @@
       <div class="score-card"><span class="big" id="scTotal">0/20</span><span class="lbl">Total autocorregido</span></div>
     </div>
     <div class="nota-final" id="notaFinal"></div>
-    <p class="aviso">La Sección 3 (Desarrollo) no se autocorrige. Bajo cada pregunta abierta tienes una <strong>respuesta modelo sugerida</strong>. Pulsa «Nuevo examen» para generar otro con preguntas diferentes.</p>
+    <p class="aviso">Bajo cada pregunta de las secciones 1 y 2 tienes la <strong>explicación</strong> de por qué es correcta. La Sección 3 muestra una <strong>respuesta modelo</strong>. Pulsa «Nuevo examen» para otro con preguntas diferentes.</p>
   </div>
 
   <section class="bloque" id="sec1">
@@ -168,96 +210,115 @@
 </div>
 
 <script>
+/* ===================== TEMA CLARO / OSCURO ===================== */
+(function(){
+  const guardado = localStorage.getItem('tema') || 'light';
+  document.documentElement.setAttribute('data-theme', guardado);
+})();
+function pintaBotonTema(){
+  const t = document.documentElement.getAttribute('data-theme');
+  const b = document.getElementById('themeBtn');
+  b.textContent = t==='dark' ? '☀️ Modo claro' : '🌙 Modo oscuro';
+}
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const actual = document.documentElement.getAttribute('data-theme');
+  const nuevo = actual==='dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', nuevo);
+  localStorage.setItem('tema', nuevo);
+  pintaBotonTema();
+});
+pintaBotonTema();
+
 /* ===================== BANCOS DE PREGUNTAS ===================== */
 
-// --- Verdadero / Falso ---  r:true = Verdadero
+// --- Verdadero / Falso ---  r:true = Verdadero ; e = explicación
 const bankVF = [
-  {q:"La misión establece el objetivo último de una compañía y responde a en qué negocio estamos.", r:true},
-  {q:"La visión es lo que la empresa hace cada día, mientras que la misión es el sueño o meta futura de la organización.", r:false},
-  {q:"Una misión orientada al mercado se centra en las necesidades que satisface, no en el producto concreto.", r:true},
-  {q:"Los productos son perecederos y cambiantes, pero las necesidades de los clientes no.", r:true},
-  {q:"Una buena declaración de misión debe ser larga y abarcar el mayor número de metas posible.", r:false},
-  {q:"En el análisis DAFO, las oportunidades y las amenazas son factores externos a la empresa.", r:true},
-  {q:"Las 3 C del análisis de situación son Clientes, Compañía y Competencia.", r:true},
-  {q:"Los objetivos de marketing deben ser cualitativos y evitar ser medibles.", r:false},
-  {q:"La estrategia de diferenciación de Porter busca fabricar al coste más bajo del sector.", r:false},
-  {q:"Una empresa 'atrapada en el medio' no logra ni el liderazgo en costes ni una diferenciación clara.", r:true},
-  {q:"El liderazgo en costes es una estrategia fácilmente imitable por empresas con muchos recursos.", r:true},
-  {q:"La estrategia de enfoque (alta segmentación) se dirige a todo el mercado por igual.", r:false},
-  {q:"En segmentación se debe segmentar siempre según descriptores (edad, género) y no según necesidades.", r:false},
-  {q:"La segmentación geográfica divide el mercado por países, regiones, ciudades o barrios.", r:true},
-  {q:"La segmentación demográfica es de las más populares por su utilidad y facilidad de medición.", r:true},
-  {q:"La segmentación psicográfica se basa en los factores AIO: Actividades, Intereses y Opiniones.", r:true},
-  {q:"En la segmentación conductual, el 'estatus de lealtad' agrupa a los consumidores según su fidelidad a la marca.", r:true},
-  {q:"Un nicho es un mercado masivo y amplio con necesidades muy generales.", r:false},
-  {q:"El marketing indiferenciado (masivo) ignora los distintos segmentos y ofrece la misma oferta a todos.", r:true},
-  {q:"Un segmento ideal debe ser, entre otras cosas, financieramente satisfactorio e identificable.", r:true},
-  {q:"El posicionamiento consiste en ocupar un lugar único en la mente del consumidor objetivo.", r:true},
-  {q:"Los Puntos de Diferencia (POD/PDD) son atributos compartidos con la competencia.", r:false},
-  {q:"Los Puntos de Paridad (POP/PDP) son atributos que se comparten con otras marcas de la categoría.", r:true},
-  {q:"La propuesta de valor es la diferencia entre el beneficio total y el coste total para el consumidor.", r:true},
-  {q:"El beneficio total para el consumidor incluye beneficios funcionales, psicológicos y financieros.", r:true},
-  {q:"El mantra de marca es un eslogan orientado al consumidor externo.", r:false},
-  {q:"El ciclo de vida del producto tiene cuatro etapas: introducción, crecimiento, madurez y declive.", r:true},
-  {q:"En la etapa de introducción los precios suelen ser bajos y las ventas muy altas.", r:false},
-  {q:"En la etapa de declive las ventas y los beneficios caen y algunas empresas abandonan el mercado.", r:true},
-  {q:"El precio es la única de las 4 P que genera ingresos; las demás generan costes.", r:true},
-  {q:"Un buyer persona es una representación semi-ficticia y detallada del cliente ideal, más concreta que el target.", r:true},
-  {q:"El producto esperado se corresponde con los Puntos de Paridad (PDP) y el producto aumentado con los de Diferencia (PDD).", r:true},
-  {q:"Los productos de conveniencia se compran con frecuencia, poca planificación y suelen tener distribución intensiva.", r:true},
-  {q:"Los productos de especialidad tienen alta sensibilidad al precio y distribución intensiva.", r:false},
-  {q:"El co-branding combina dos o más marcas ya conocidas en un producto o campaña conjunta.", r:true},
-  {q:"La demanda inelástica significa que los consumidores son muy sensibles a los cambios de precio.", r:false},
-  {q:"Los costes fijos o de estructura varían directamente con el nivel de producción.", r:false},
-  {q:"El método de fijación de precios por márgenes ignora la demanda, el valor percibido y la competencia.", r:true},
-  {q:"El precio de penetración consiste en fijar un precio bajo para maximizar la cuota de mercado.", r:true},
-  {q:"El descremado del mercado fija precios altos al inicio que luego bajan, dando sensación de producto superior.", r:true},
-  {q:"En el canal de distribución directo no hay intermediarios entre el productor y el consumidor.", r:true},
-  {q:"La distribución exclusiva busca estar presente en el mayor número de puntos de venta posible.", r:false},
-  {q:"En la estrategia push el productor empuja el producto por el canal con incentivos al minorista.", r:true},
-  {q:"En la estrategia pull el productor crea demanda en el consumidor final para que este exija el producto.", r:true},
-  {q:"La venta personal es la herramienta del mix de comunicación con mayor nivel de interacción (bidireccional).", r:true},
-  {q:"La publicidad tiene un alcance masivo y sirve para crear notoriedad de marca (awareness).", r:true},
-  {q:"Las relaciones públicas buscan gestionar la reputación y la aceptación de los públicos de forma creíble.", r:true},
-  {q:"El merchandising es el conjunto de técnicas en el punto de venta para estimular la compra y la rentabilidad.", r:true}
+  {q:"La misión establece el objetivo último de una compañía y responde a en qué negocio estamos.", r:true, e:"La misión define el objetivo último y el negocio en el que opera la empresa (¿cuál es nuestro negocio?, ¿quiénes son nuestros clientes?)."},
+  {q:"La visión es lo que la empresa hace cada día, mientras que la misión es el sueño o meta futura de la organización.", r:false, e:"Es al revés: la MISIÓN es lo que se hace cada día; la VISIÓN es el sueño o meta futura."},
+  {q:"Una misión orientada al mercado se centra en las necesidades que satisface, no en el producto concreto.", r:true, e:"La orientación al mercado se define por la necesidad que cubre, no por el producto (ej. 'transportamos personas' en vez de 'gestionamos vías férreas')."},
+  {q:"Los productos son perecederos y cambiantes, pero las necesidades de los clientes no.", r:true, e:"Por eso conviene definir la misión en términos de necesidades, que son más estables que los productos."},
+  {q:"Una buena declaración de misión debe ser larga y abarcar el mayor número de metas posible.", r:false, e:"Debe centrarse en un número LIMITADO de metas y ser breve, fácil de recordar y a largo plazo."},
+  {q:"En el análisis DAFO, las oportunidades y las amenazas son factores externos a la empresa.", r:true, e:"Oportunidades y amenazas son externas (entorno); fortalezas y debilidades son internas."},
+  {q:"Las 3 C del análisis de situación son Clientes, Compañía y Competencia.", r:true, e:"Las 3 C analizan Clientes, Compañía y Competencia para generar ventaja competitiva."},
+  {q:"Los objetivos de marketing deben ser cualitativos y evitar ser medibles.", r:false, e:"Deben ser cuantitativos y medibles siempre que sea factible, además de realistas, jerárquicos y consistentes."},
+  {q:"La estrategia de diferenciación de Porter busca fabricar al coste más bajo del sector.", r:false, e:"Eso es el liderazgo en costes. La diferenciación busca un producto percibido como ÚNICO en atributos valorados."},
+  {q:"Una empresa 'atrapada en el medio' no logra ni el liderazgo en costes ni una diferenciación clara.", r:true, e:"Estar 'atrapado en el medio' significa no conseguir ninguna de las ventajas competitivas claras de Porter."},
+  {q:"El liderazgo en costes es una estrategia fácilmente imitable por empresas con muchos recursos.", r:true, e:"Es uno de sus riesgos: rivales con recursos lo imitan y puede desencadenarse una guerra de precios."},
+  {q:"La estrategia de enfoque (alta segmentación) se dirige a todo el mercado por igual.", r:false, e:"El enfoque se centra en un SEGMENTO concreto, distinto al resto del sector, no en todo el mercado."},
+  {q:"En segmentación se debe segmentar siempre según descriptores (edad, género) y no según necesidades.", r:false, e:"Se segmenta según las BASES (necesidades/beneficios). Los descriptores solo describen y ayudan a alcanzar el segmento."},
+  {q:"La segmentación geográfica divide el mercado por países, regiones, ciudades o barrios.", r:true, e:"La geográfica divide por unidades territoriales: país, región, ciudad, barrio, densidad o clima."},
+  {q:"La segmentación demográfica es de las más populares por su utilidad y facilidad de medición.", r:true, e:"Edad, género, ingresos, generación… son fáciles de medir, por eso es de las más usadas."},
+  {q:"La segmentación psicográfica se basa en los factores AIO: Actividades, Intereses y Opiniones.", r:true, e:"La psicográfica usa personalidad, estilo de vida y valores, descritos con los factores AIO."},
+  {q:"En la segmentación conductual, el 'estatus de lealtad' agrupa a los consumidores según su fidelidad a la marca.", r:true, e:"Agrupa en leales 'hard-core', leales a varias marcas, cambiantes y 'cambiadores' sin lealtad."},
+  {q:"Un nicho es un mercado masivo y amplio con necesidades muy generales.", r:false, e:"Un nicho es un subconjunto PEQUEÑO dentro de un segmento, con necesidades muy concretas."},
+  {q:"El marketing indiferenciado (masivo) ignora los distintos segmentos y ofrece la misma oferta a todos.", r:true, e:"El marketing masivo trata a todo el mercado igual; apropiado cuando las preferencias son similares."},
+  {q:"Un segmento ideal debe ser, entre otras cosas, financieramente satisfactorio e identificable.", r:true, e:"Un segmento útil debe ser identificable, rentable, diferente, sostenible y alineado con las fortalezas de la empresa."},
+  {q:"El posicionamiento consiste en ocupar un lugar único en la mente del consumidor objetivo.", r:true, e:"Posicionar es diseñar la oferta y la imagen para ocupar un lugar distintivo en la mente del consumidor."},
+  {q:"Los Puntos de Diferencia (POD/PDD) son atributos compartidos con la competencia.", r:false, e:"Los POD son atributos EXCLUSIVOS/diferenciadores. Los compartidos con otras marcas son los POP."},
+  {q:"Los Puntos de Paridad (POP/PDP) son atributos que se comparten con otras marcas de la categoría.", r:true, e:"Los POP son atributos o asociaciones comunes a la categoría, necesarios para 'pertenecer' a ella."},
+  {q:"La propuesta de valor es la diferencia entre el beneficio total y el coste total para el consumidor.", r:true, e:"Valor = beneficio total percibido − coste total percibido."},
+  {q:"El beneficio total para el consumidor incluye beneficios funcionales, psicológicos y financieros.", r:true, e:"Suma los beneficios funcionales, psicológicos y financieros que el cliente espera de la oferta."},
+  {q:"El mantra de marca es un eslogan orientado al consumidor externo.", r:false, e:"El mantra es INTERNO (para empleados y anunciantes), no un eslogan dirigido al consumidor."},
+  {q:"El ciclo de vida del producto tiene cuatro etapas: introducción, crecimiento, madurez y declive.", r:true, e:"Las cuatro etapas clásicas son introducción, crecimiento, madurez y declive."},
+  {q:"En la etapa de introducción los precios suelen ser bajos y las ventas muy altas.", r:false, e:"En introducción los precios son ELEVADOS y las ventas BAJAS; se buscan nuevos clientes y pruebas de producto."},
+  {q:"En la etapa de declive las ventas y los beneficios caen y algunas empresas abandonan el mercado.", r:true, e:"En el declive caen ventas y beneficios; las empresas con más costes o sin ventaja abandonan."},
+  {q:"El precio es la única de las 4 P que genera ingresos; las demás generan costes.", r:true, e:"Producto, distribución y comunicación generan costes; solo el precio aporta ingresos, y se modifica con rapidez."},
+  {q:"Un buyer persona es una representación semi-ficticia y detallada del cliente ideal, más concreta que el target.", r:true, e:"El buyer persona 'humaniza' al cliente ideal con nombre, motivaciones y hábitos; es más concreto que el target."},
+  {q:"El producto esperado se corresponde con los Puntos de Paridad (PDP) y el producto aumentado con los de Diferencia (PDD).", r:true, e:"En la jerarquía de valor, el esperado equivale a los PDP y el aumentado (donde se diferencia) a los PDD."},
+  {q:"Los productos de conveniencia se compran con frecuencia, poca planificación y suelen tener distribución intensiva.", r:true, e:"Compra frecuente, precio bajo, poco esfuerzo y distribución intensiva en muchos puntos de venta."},
+  {q:"Los productos de especialidad tienen alta sensibilidad al precio y distribución intensiva.", r:false, e:"Tienen BAJA sensibilidad al precio y distribución EXCLUSIVA, con fuerte lealtad de marca."},
+  {q:"El co-branding combina dos o más marcas ya conocidas en un producto o campaña conjunta.", r:true, e:"Une marcas conocidas para posicionar mejor y reducir costes de introducción (ej. Intel Inside)."},
+  {q:"La demanda inelástica significa que los consumidores son muy sensibles a los cambios de precio.", r:false, e:"Inelástica (E<1) = POCO sensibles (insulina, gasolina). Elástica (E>1) = muy sensibles."},
+  {q:"Los costes fijos o de estructura varían directamente con el nivel de producción.", r:false, e:"Los costes VARIABLES varían con la producción; los FIJOS o de estructura no."},
+  {q:"El método de fijación de precios por márgenes ignora la demanda, el valor percibido y la competencia.", r:true, e:"Es su principal limitación: añade un margen al coste sin mirar demanda, valor ni competencia."},
+  {q:"El precio de penetración consiste en fijar un precio bajo para maximizar la cuota de mercado.", r:true, e:"Precio bajo para ganar cuota; útil con economías de escala y demanda sensible al precio."},
+  {q:"El descremado del mercado fija precios altos al inicio que luego bajan, dando sensación de producto superior.", r:true, e:"Típico en novedades tecnológicas (Sony): precio alto inicial que transmite producto superior y luego baja."},
+  {q:"En el canal de distribución directo no hay intermediarios entre el productor y el consumidor.", r:true, e:"El canal directo conecta productor y consumidor sin intermediarios (alto control, alta inversión)."},
+  {q:"La distribución exclusiva busca estar presente en el mayor número de puntos de venta posible.", r:false, e:"Eso es la INTENSIVA. La exclusiva usa un único intermediario por zona (lujo, postventa crítico)."},
+  {q:"En la estrategia push el productor empuja el producto por el canal con incentivos al minorista.", r:true, e:"Push = empujar el producto por el canal con márgenes, descuentos y fuerza de ventas."},
+  {q:"En la estrategia pull el productor crea demanda en el consumidor final para que este exija el producto.", r:true, e:"Pull = crear demanda final con publicidad masiva para que el consumidor 'tire' del producto."},
+  {q:"La venta personal es la herramienta del mix de comunicación con mayor nivel de interacción (bidireccional).", r:true, e:"Es bidireccional (asesoramiento, negociación); ideal en B2B y productos de alto valor."},
+  {q:"La publicidad tiene un alcance masivo y sirve para crear notoriedad de marca (awareness).", r:true, e:"Alcance masivo e información persuasiva: construye notoriedad e impacto cognitivo."},
+  {q:"Las relaciones públicas buscan gestionar la reputación y la aceptación de los públicos de forma creíble.", r:true, e:"Las RRPP gestionan reputación y aceptación de públicos internos y externos con información creíble."},
+  {q:"El merchandising es el conjunto de técnicas en el punto de venta para estimular la compra y la rentabilidad.", r:true, e:"Son técnicas en el punto de venta (presentación, seducción y gestión) para estimular la compra."}
 ];
 
-// --- Selección múltiple ---  c = índice de la opción correcta
+// --- Selección múltiple ---  c = índice de la opción correcta ; e = explicación
 const bankMC = [
-  {q:"¿Cuál de los siguientes NO es un criterio clásico de segmentación de mercado?", o:["Geográfico","Demográfico","Psicográfico","Financiero-contable"], c:3},
-  {q:"La segmentación que divide a los consumidores según estilo de vida, personalidad y valores (factores AIO) es la:", o:["Geográfica","Demográfica","Psicográfica","Conductual"], c:2},
-  {q:"Las siglas STP corresponden a:", o:["Segmentación, Targeting y Posicionamiento","Servicio, Tarifa y Promoción","Segmentación, Tienda y Precio","Servicio, Targeting y Posición"], c:0},
-  {q:"¿Cuál es un requisito que debe cumplir un segmento ideal para el targeting?", o:["Ser lo más amplio posible y atender a todos","Ser financieramente satisfactorio e identificable","No diferenciarse de otros segmentos","Tener las mismas necesidades que el resto del mercado"], c:1},
-  {q:"Una buena declaración de posicionamiento debe especificar:", o:["Únicamente el precio del producto","Solo los costes de producción","Quiénes son los clientes, qué necesidades satisface y por qué es la mejor opción","La nómina del equipo de ventas"], c:2},
-  {q:"Según Porter, ofrecer un producto percibido como único en los atributos que el cliente valora corresponde a:", o:["Liderazgo en costes","Diferenciación","Enfoque en bajo precio","Estar 'atrapado en el medio'"], c:1},
-  {q:"¿En qué etapa del ciclo de vida los precios suelen ser elevados y los vendedores buscan nuevos clientes y pruebas de producto?", o:["Introducción","Crecimiento","Madurez","Declive"], c:0},
-  {q:"Las 4 P del marketing mix son:", o:["Producto, Personas, Proceso y Precio","Producto, Precio, Plaza (distribución) y Promoción (comunicación)","Plaza, Precio, Publicidad y Promesa","Producto, Precio, Posición y Persona"], c:1},
-  {q:"En la distribución, la estrategia 'push' (empujar) se caracteriza por:", o:["Crear demanda en el consumidor final con publicidad masiva","Empujar el producto por el canal con incentivos al minorista y fuerza de ventas","Eliminar todos los intermediarios del canal","Vender exclusivamente por internet"], c:1},
-  {q:"Dentro del mix de comunicación, la herramienta con máximo nivel de interacción (bidireccional), ideal para B2B y productos de alto valor, es:", o:["La publicidad","La promoción de ventas","La venta personal","Las relaciones públicas"], c:2},
-  {q:"En el proceso de creación de valor, 'elegir el valor' implica que la empresa debe:", o:["Fijar precios y características del producto","Segmentar el mercado, elegir su target y posicionar su oferta","Comunicar la oferta por publicidad","Distribuir el producto físicamente"], c:1},
-  {q:"En el análisis DAFO, las fortalezas y las debilidades son factores:", o:["Internos de la empresa","Externos del entorno","Exclusivos de la competencia","Solo financieros"], c:0},
-  {q:"La estrategia competitiva de Porter que consiste en fabricar a un coste más bajo que los competidores es:", o:["Diferenciación","Liderazgo en costes","Enfoque en diferenciación","Posicionamiento bidireccional"], c:1},
-  {q:"Las 'bases' de la segmentación son:", o:["Las características observables como edad o renta","Las necesidades y beneficios que buscan los consumidores","El número de competidores del sector","Los canales de distribución disponibles"], c:1},
-  {q:"Atender a un único segmento mediante marketing concentrado, logrando profundo conocimiento de sus necesidades, es:", o:["Marketing indiferenciado","Cobertura total del mercado","Especialización en un único segmento (nicho)","Marketing masivo"], c:2},
-  {q:"La propuesta de valor para el cliente se define como:", o:["El coste de fabricación del producto","El beneficio total menos el coste total para el consumidor","El precio de venta menos los impuestos","La inversión en publicidad"], c:1},
-  {q:"Los Puntos de Diferencia (POD/PDD) son:", o:["Atributos compartidos con toda la competencia","Atributos valorados que el cliente cree no encontrar igual en otra marca","El precio mínimo del producto","Requisitos legales del producto"], c:1},
-  {q:"Los Puntos de Paridad (POP/PDP) son:", o:["Atributos exclusivos de una sola marca","Atributos o asociaciones compartidos con otras marcas de la categoría","El margen de beneficio del fabricante","Las debilidades de la competencia"], c:1},
-  {q:"En la jerarquía de valor del producto, el nivel central (más interno) es:", o:["El producto aumentado","El producto potencial","El beneficio fundamental","El producto esperado"], c:2},
-  {q:"La clasificación de producto con fuerte lealtad de marca, baja sensibilidad al precio y distribución exclusiva es:", o:["De conveniencia","De compra","De especialidad","No buscado"], c:2},
-  {q:"El precio dentro de las 4 P se caracteriza porque:", o:["Es la única variable que genera ingresos/beneficios","Nunca puede modificarse","Siempre debe ser el más bajo del mercado","No influye en la decisión del consumidor"], c:0},
-  {q:"Una demanda elástica (E > 1) significa que:", o:["Los consumidores son muy sensibles al precio","Los consumidores no reaccionan al precio","El precio no afecta a las ventas","La demanda es constante"], c:0},
-  {q:"El coste total de un producto se calcula como:", o:["Costes fijos menos costes variables","Costes fijos más costes variables","Precio menos margen","Solo los costes variables"], c:1},
-  {q:"Fijar un precio inicial muy alto en una novedad tecnológica, que luego baja, dando sensación de producto superior, es:", o:["Precio de penetración","Descremado del mercado","Precio de supervivencia","Precio de referencia"], c:1},
-  {q:"El canal de distribución con dos o más intermediarios (p. ej. mayorista y minorista) se denomina:", o:["Canal directo","Canal corto","Canal largo","Canal exclusivo"], c:2},
-  {q:"Buscar la presencia en el mayor número posible de puntos de venta corresponde a la distribución:", o:["Exclusiva","Selectiva","Intensiva","Directa"], c:2},
-  {q:"La herramienta del mix de comunicación basada en incentivos temporales (cupones, 2x1, muestras) a corto plazo es:", o:["La publicidad","La venta personal","La promoción de ventas","Las relaciones públicas"], c:2},
-  {q:"La estrategia 'pull' (tirar) se basa en:", o:["Empujar el producto al canal con descuentos al minorista","Crear demanda en el consumidor final para que exija el producto","Eliminar la publicidad","Vender solo a empresas (B2B)"], c:1},
-  {q:"El KPI que mide cuánto cuesta de media captar un nuevo cliente es:", o:["LTV","NPS","CAC","ROI"], c:2},
-  {q:"El KPI que mide el valor total que un cliente aporta durante toda su relación con la marca es:", o:["CAC","LTV (valor del ciclo de vida)","NPS","CPC"], c:1},
-  {q:"El formato minorista de gran superficie especializada que domina todo un sector (IKEA, Leroy Merlin) se conoce como:", o:["Tienda de conveniencia","Category killer","Tienda de descuento","Gran almacén"], c:1},
-  {q:"En el proceso de comunicación comercial, transformar la idea corporativa en símbolos, imágenes o lenguaje publicitario es la:", o:["Descodificación","Codificación","Retroalimentación (feedback)","Recepción"], c:1},
-  {q:"El NPS (Net Promoter Score) mide principalmente:", o:["El coste por clic de la publicidad","La satisfacción y probabilidad de que el cliente recomiende la marca","El número de unidades producidas","El margen de beneficio unitario"], c:1},
-  {q:"La distribución exclusiva es la más adecuada para:", o:["Productos de primera necesidad y compra por impulso","Productos de lujo, alta implicación y servicio postventa crítico","Cualquier producto de consumo masivo","Productos sin marca"], c:1}
+  {q:"¿Cuál de los siguientes NO es un criterio clásico de segmentación de mercado?", o:["Geográfico","Demográfico","Psicográfico","Financiero-contable"], c:3, e:"Los cuatro criterios clásicos son geográfico, demográfico, psicográfico y conductual; 'financiero-contable' no es uno."},
+  {q:"La segmentación que divide a los consumidores según estilo de vida, personalidad y valores (factores AIO) es la:", o:["Geográfica","Demográfica","Psicográfica","Conductual"], c:2, e:"La psicográfica usa personalidad, estilo de vida y valores, descritos con los factores AIO (Actividades, Intereses, Opiniones)."},
+  {q:"Las siglas STP corresponden a:", o:["Segmentación, Targeting y Posicionamiento","Servicio, Tarifa y Promoción","Segmentación, Tienda y Precio","Servicio, Targeting y Posición"], c:0, e:"STP = Segmentación (dividir el mercado), Targeting (elegir el segmento) y Posicionamiento (afianzar la ventaja en la mente del cliente)."},
+  {q:"¿Cuál es un requisito que debe cumplir un segmento ideal para el targeting?", o:["Ser lo más amplio posible y atender a todos","Ser financieramente satisfactorio e identificable","No diferenciarse de otros segmentos","Tener las mismas necesidades que el resto del mercado"], c:1, e:"Un segmento útil debe ser identificable y rentable, además de diferente, sostenible y alineado con las fortalezas de la empresa."},
+  {q:"Una buena declaración de posicionamiento debe especificar:", o:["Únicamente el precio del producto","Solo los costes de producción","Quiénes son los clientes, qué necesidades satisface y por qué es la mejor opción","La nómina del equipo de ventas"], c:2, e:"Debe responder a QUIÉNES son los clientes, QUÉ necesidad satisface y POR QUÉ es la mejor opción frente a la competencia."},
+  {q:"Según Porter, ofrecer un producto percibido como único en los atributos que el cliente valora corresponde a:", o:["Liderazgo en costes","Diferenciación","Enfoque en bajo precio","Estar 'atrapado en el medio'"], c:1, e:"La diferenciación crea un producto percibido como único en atributos relevantes, a un coste que no exceda la prima de precio."},
+  {q:"¿En qué etapa del ciclo de vida los precios suelen ser elevados y los vendedores buscan nuevos clientes y pruebas de producto?", o:["Introducción","Crecimiento","Madurez","Declive"], c:0, e:"En introducción el producto es nuevo, las ventas bajas y los precios elevados; se busca dar a conocer y probar el producto."},
+  {q:"Las 4 P del marketing mix son:", o:["Producto, Personas, Proceso y Precio","Producto, Precio, Plaza (distribución) y Promoción (comunicación)","Plaza, Precio, Publicidad y Promesa","Producto, Precio, Posición y Persona"], c:1, e:"Las 4 P son Producto, Precio, Plaza (distribución) y Promoción (comunicación)."},
+  {q:"En la distribución, la estrategia 'push' (empujar) se caracteriza por:", o:["Crear demanda en el consumidor final con publicidad masiva","Empujar el producto por el canal con incentivos al minorista y fuerza de ventas","Eliminar todos los intermediarios del canal","Vender exclusivamente por internet"], c:1, e:"Push empuja el producto por el canal con incentivos, márgenes y fuerza de ventas; la otra opción describe la estrategia pull."},
+  {q:"Dentro del mix de comunicación, la herramienta con máximo nivel de interacción (bidireccional), ideal para B2B y productos de alto valor, es:", o:["La publicidad","La promoción de ventas","La venta personal","Las relaciones públicas"], c:2, e:"La venta personal es bidireccional (asesora, negocia, gestiona objeciones); ideal en B2B y productos técnicos de alto valor."},
+  {q:"En el proceso de creación de valor, 'elegir el valor' implica que la empresa debe:", o:["Fijar precios y características del producto","Segmentar el mercado, elegir su target y posicionar su oferta","Comunicar la oferta por publicidad","Distribuir el producto físicamente"], c:1, e:"'Elegir el valor' es la fase STP (segmentar, target, posicionar). Fijar precio/producto es 'proporcionar' y la publicidad es 'comunicar' el valor."},
+  {q:"En el análisis DAFO, las fortalezas y las debilidades son factores:", o:["Internos de la empresa","Externos del entorno","Exclusivos de la competencia","Solo financieros"], c:0, e:"Fortalezas y debilidades son internas; oportunidades y amenazas son externas (del entorno)."},
+  {q:"La estrategia competitiva de Porter que consiste en fabricar a un coste más bajo que los competidores es:", o:["Diferenciación","Liderazgo en costes","Enfoque en diferenciación","Posicionamiento bidireccional"], c:1, e:"El liderazgo en costes fabrica a menor coste mediante economías de escala y control de gastos, permitiendo bajar precios."},
+  {q:"Las 'bases' de la segmentación son:", o:["Las características observables como edad o renta","Las necesidades y beneficios que buscan los consumidores","El número de competidores del sector","Los canales de distribución disponibles"], c:1, e:"Las bases son las necesidades/beneficios buscados; las características observables (edad, renta) son los 'descriptores'."},
+  {q:"Atender a un único segmento mediante marketing concentrado, logrando profundo conocimiento de sus necesidades, es:", o:["Marketing indiferenciado","Cobertura total del mercado","Especialización en un único segmento (nicho)","Marketing masivo"], c:2, e:"La especialización en un único segmento (nicho) usa marketing concentrado y puede cobrar precio premium si es líder."},
+  {q:"La propuesta de valor para el cliente se define como:", o:["El coste de fabricación del producto","El beneficio total menos el coste total para el consumidor","El precio de venta menos los impuestos","La inversión en publicidad"], c:1, e:"Es la diferencia entre el beneficio total percibido y el coste total percibido por el consumidor."},
+  {q:"Los Puntos de Diferencia (POD/PDD) son:", o:["Atributos compartidos con toda la competencia","Atributos valorados que el cliente cree no encontrar igual en otra marca","El precio mínimo del producto","Requisitos legales del producto"], c:1, e:"Los POD son atributos que el cliente asocia a una marca y cree no encontrar igual en la competencia (diferenciadores)."},
+  {q:"Los Puntos de Paridad (POP/PDP) son:", o:["Atributos exclusivos de una sola marca","Atributos o asociaciones compartidos con otras marcas de la categoría","El margen de beneficio del fabricante","Las debilidades de la competencia"], c:1, e:"Los POP son atributos comunes a la categoría que se comparten con otras marcas; son necesarios para 'pertenecer' a ella."},
+  {q:"En la jerarquía de valor del producto, el nivel central (más interno) es:", o:["El producto aumentado","El producto potencial","El beneficio fundamental","El producto esperado"], c:2, e:"El núcleo es el beneficio fundamental: el servicio o beneficio que el cliente realmente compra."},
+  {q:"La clasificación de producto con fuerte lealtad de marca, baja sensibilidad al precio y distribución exclusiva es:", o:["De conveniencia","De compra","De especialidad","No buscado"], c:2, e:"Los productos de especialidad tienen fuerte lealtad, baja sensibilidad al precio y distribución exclusiva."},
+  {q:"El precio dentro de las 4 P se caracteriza porque:", o:["Es la única variable que genera ingresos/beneficios","Nunca puede modificarse","Siempre debe ser el más bajo del mercado","No influye en la decisión del consumidor"], c:0, e:"El precio es la única P que genera ingresos (las demás generan costes) y puede modificarse con rapidez."},
+  {q:"Una demanda elástica (E > 1) significa que:", o:["Los consumidores son muy sensibles al precio","Los consumidores no reaccionan al precio","El precio no afecta a las ventas","La demanda es constante"], c:0, e:"Con E>1 los consumidores son muy sensibles: una pequeña subida de precio provoca una gran caída de ventas."},
+  {q:"El coste total de un producto se calcula como:", o:["Costes fijos menos costes variables","Costes fijos más costes variables","Precio menos margen","Solo los costes variables"], c:1, e:"Costes totales = costes fijos + costes variables. El coste medio se obtiene dividiéndolo entre las unidades."},
+  {q:"Fijar un precio inicial muy alto en una novedad tecnológica, que luego baja, dando sensación de producto superior, es:", o:["Precio de penetración","Descremado del mercado","Precio de supervivencia","Precio de referencia"], c:1, e:"El descremado (skimming) fija precios altos al lanzar una novedad y los baja después (estrategia clásica de Sony)."},
+  {q:"El canal de distribución con dos o más intermediarios (p. ej. mayorista y minorista) se denomina:", o:["Canal directo","Canal corto","Canal largo","Canal exclusivo"], c:2, e:"El canal largo tiene dos o más intermediarios (mayorista + minorista); típico del consumo masivo."},
+  {q:"Buscar la presencia en el mayor número posible de puntos de venta corresponde a la distribución:", o:["Exclusiva","Selectiva","Intensiva","Directa"], c:2, e:"La distribución intensiva busca la máxima exposición en cuantos más puntos de venta mejor (productos de conveniencia)."},
+  {q:"La herramienta del mix de comunicación basada en incentivos temporales (cupones, 2x1, muestras) a corto plazo es:", o:["La publicidad","La venta personal","La promoción de ventas","Las relaciones públicas"], c:2, e:"La promoción de ventas usa incentivos temporales (cupones, 2x1, muestras) para estimular la compra a corto plazo."},
+  {q:"La estrategia 'pull' (tirar) se basa en:", o:["Empujar el producto al canal con descuentos al minorista","Crear demanda en el consumidor final para que exija el producto","Eliminar la publicidad","Vender solo a empresas (B2B)"], c:1, e:"Pull crea demanda en el consumidor final (publicidad masiva) para que este exija el producto al minorista."},
+  {q:"El KPI que mide cuánto cuesta de media captar un nuevo cliente es:", o:["LTV","NPS","CAC","ROI"], c:2, e:"El CAC (Coste de Adquisición de Cliente) mide la inversión media necesaria para captar un nuevo cliente."},
+  {q:"El KPI que mide el valor total que un cliente aporta durante toda su relación con la marca es:", o:["CAC","LTV (valor del ciclo de vida)","NPS","CPC"], c:1, e:"El LTV (Lifetime Value) es el beneficio total que aporta un cliente durante toda su relación con la marca."},
+  {q:"El formato minorista de gran superficie especializada que domina todo un sector (IKEA, Leroy Merlin) se conoce como:", o:["Tienda de conveniencia","Category killer","Tienda de descuento","Gran almacén"], c:1, e:"El 'category killer' es un gigante especializado que domina una categoría entera (IKEA, Leroy Merlin)."},
+  {q:"En el proceso de comunicación comercial, transformar la idea corporativa en símbolos, imágenes o lenguaje publicitario es la:", o:["Descodificación","Codificación","Retroalimentación (feedback)","Recepción"], c:1, e:"La codificación transforma la idea del emisor en símbolos, imágenes o lenguaje; la descodificación es cuando el receptor los interpreta."},
+  {q:"El NPS (Net Promoter Score) mide principalmente:", o:["El coste por clic de la publicidad","La satisfacción y probabilidad de que el cliente recomiende la marca","El número de unidades producidas","El margen de beneficio unitario"], c:1, e:"El NPS mide la satisfacción y lealtad según la probabilidad de que el cliente recomiende la marca (promotores vs. detractores)."},
+  {q:"La distribución exclusiva es la más adecuada para:", o:["Productos de primera necesidad y compra por impulso","Productos de lujo, alta implicación y servicio postventa crítico","Cualquier producto de consumo masivo","Productos sin marca"], c:1, e:"La exclusiva (un único intermediario por zona) da máximo control de imagen: ideal para lujo y postventa crítico."}
 ];
 
 // --- Desarrollo ---  modelo = respuesta sugerida (HTML)
@@ -292,7 +353,7 @@ const examVF = pick(bankVF,10);
 const examMC = pick(bankMC,10).map(it=>{
   const opts = it.o.map((t,idx)=>({text:t, correct: idx===it.c}));
   shuffle(opts);
-  return {q:it.q, opts};
+  return {q:it.q, opts, e:it.e};
 });
 const examDEV = pick(bankDEV,3);
 
@@ -305,7 +366,8 @@ examVF.forEach((item,i)=>{
     <div class="opciones vf">
       <label class="opt"><input type="radio" name="vf${i}" value="true"><span>Verdadero</span></label>
       <label class="opt"><input type="radio" name="vf${i}" value="false"><span>Falso</span></label>
-    </div>`;
+    </div>
+    <div class="explicacion"><span class="et">Explicación</span>${item.e}</div>`;
   contVF.appendChild(div);
 });
 
@@ -318,7 +380,8 @@ examMC.forEach((item,i)=>{
     const letra=String.fromCharCode(97+j);
     opts+=`<label class="opt"><input type="radio" name="mc${i}" value="${j}"><span>${letra}) ${op.text}</span></label>`;
   });
-  div.innerHTML=`<p class="q"><span class="num">${i+1}.</span>${item.q}</p><div class="opciones">${opts}</div>`;
+  div.innerHTML=`<p class="q"><span class="num">${i+1}.</span>${item.q}</p><div class="opciones">${opts}</div>
+    <div class="explicacion"><span class="et">Explicación</span>${item.e}</div>`;
   contMC.appendChild(div);
 });
 
@@ -403,6 +466,7 @@ function corregir(porTiempo){
       if(sel.value===correctaVal){aciertosVF++;preg.classList.add('bien');}
       else{preg.classList.add('mal');const lab=sel.closest('label.opt');lab.classList.add('incorrecta');lab.insertAdjacentHTML('beforeend','<span class="marca no">✗ tu respuesta</span>');}
     }else preg.classList.add('mal');
+    preg.querySelector('.explicacion').style.display='block';
   });
 
   examMC.forEach((item,i)=>{
@@ -416,6 +480,7 @@ function corregir(porTiempo){
       if(item.opts[parseInt(sel.value)].correct){aciertosMC++;preg.classList.add('bien');}
       else{preg.classList.add('mal');const lab=sel.closest('label.opt');lab.classList.add('incorrecta');lab.insertAdjacentHTML('beforeend','<span class="marca no">✗ tu respuesta</span>');}
     }else preg.classList.add('mal');
+    preg.querySelector('.explicacion').style.display='block';
   });
 
   document.querySelectorAll('#sec3 .modelo').forEach(m=>m.style.display='block');
