@@ -151,6 +151,14 @@
     </div>
 
     <div class="cfg-row">
+      <div class="cfg-label">Nivel</div>
+      <div class="opciones-cfg">
+        <label class="chip"><input type="radio" name="nivel" value="normal" checked> 🟢 Normal</label>
+        <label class="chip"><input type="radio" name="nivel" value="dificil"> 🔴 Difícil <span style="color:var(--texto-suave)">(aplicación y casos · penaliza fallos · corte 7/10 · menos tiempo)</span></label>
+      </div>
+    </div>
+
+    <div class="cfg-row">
       <div class="cfg-label">Temas</div>
       <div class="opciones-cfg">
         <label class="chip"><input type="checkbox" class="tema" value="3" checked> Tema III</label>
@@ -202,6 +210,7 @@
         <div class="score-card"><span class="big" id="scTotal">0/0</span><span class="lbl">Total autocorregido</span></div>
       </div>
       <div class="nota-final" id="notaFinal"></div>
+      <div id="penalInfo" style="font-size:14px;color:#ffd7b0;margin-top:4px;"></div>
       <p class="aviso">Bajo cada pregunta de las secciones 1 y 2 tienes la <strong>explicación</strong>. La Sección 3 muestra una <strong>respuesta modelo</strong>.</p>
     </div>
 
@@ -314,7 +323,17 @@ const bankVF = [
   {t:7,q:"El ticket medio (AOV) es el valor promedio de cada pedido o compra.", r:true, e:"AOV = ingresos totales ÷ número de pedidos."},
   {t:7,q:"La cuota de mercado es el porcentaje de ventas de una empresa respecto al total del mercado.", r:true, e:"Cuota = ventas de la empresa ÷ ventas totales del mercado."},
   {t:7,q:"Una tasa de rebote (bounce rate) alta en una web suele ser una buena señal.", r:false, e:"Suele ser MALA: indica que los visitantes se van sin interactuar."},
-  {t:7,q:"Los KPIs deben ser medibles y estar alineados con los objetivos de la empresa.", r:true, e:"Un buen KPI es específico, medible y ligado a un objetivo concreto."}
+  {t:7,q:"Los KPIs deben ser medibles y estar alineados con los objetivos de la empresa.", r:true, e:"Un buen KPI es específico, medible y ligado a un objetivo concreto."},
+  {t:4,d:2,q:"Un beneficio percibido como 'barato' y otro como 'máxima calidad' suelen estar negativamente correlacionados, por lo que es difícil poseer ambos a la vez.", r:true, e:"Los PDD/PDP correlacionales pueden oponerse (barato vs. calidad)."},
+  {t:3,d:2,q:"Mercadona, con su lema de 'máximo ahorro', es un ejemplo de estrategia de diferenciación de Porter.", r:false, e:"Mercadona es liderazgo en COSTES; la diferenciación sería Mercedes o Bang & Olufsen."},
+  {t:4,d:2,q:"Que una agencia de viajes pueda reservar vuelos es un Punto de Diferencia que la hace única frente a la competencia.", r:false, e:"Es un Punto de PARIDAD de categoría: lo esperable para pertenecer al sector, no algo diferencial."},
+  {t:5,d:2,q:"El precio de penetración (bajo para ganar cuota) y el descremado (alto al inicio) son estrategias opuestas.", r:true, e:"Penetración = precio bajo para cuota; descremado = precio alto inicial. Son opuestas."},
+  {t:6,d:2,q:"En la estrategia push la comunicación se sesga hacia la publicidad masiva dirigida al consumidor final.", r:false, e:"Eso es del PULL; el push se apoya en venta personal y promociones al canal (B2B)."},
+  {t:7,d:2,q:"Un ratio LTV:CAC de 1:1 indica un negocio muy rentable por cada cliente.", r:false, e:"1:1 significa que captar al cliente cuesta lo mismo que aporta: sin margen, no es rentable."},
+  {t:7,d:2,q:"Si el CTR es alto pero la conversión es muy baja, mucha gente hace clic pero pocos completan la acción objetivo.", r:true, e:"El CTR mide clics; la conversión mide acciones completadas: pueden divergir."},
+  {t:5,d:2,q:"La demanda de la gasolina es un ejemplo clásico de demanda elástica.", r:false, e:"La gasolina es bastante INELÁSTICA: la gente sigue comprando aunque suba el precio."},
+  {t:6,d:2,q:"La distribución exclusiva y la intensiva persiguen el mismo objetivo de cobertura.", r:false, e:"Son opuestas: exclusiva = un punto por zona (control); intensiva = máxima presencia."},
+  {t:6,d:2,q:"Para un producto de lujo con servicio postventa crítico, la distribución intensiva es la más adecuada.", r:false, e:"Lo adecuado es la EXCLUSIVA; la intensiva es para conveniencia/consumo masivo."}
 ];
 
 const bankMC = [
@@ -372,7 +391,25 @@ const bankMC = [
   {t:7,q:"La cuota de mercado mide:", o:["El porcentaje de ventas de la empresa frente al total del mercado","El coste por clic de la publicidad","La tasa de conversión de la web","El valor del cliente"], c:0, e:"Cuota = ventas de la empresa ÷ ventas totales del mercado."},
   {t:7,q:"El CPL (Coste Por Lead) mide:", o:["El coste de captar un cliente potencial (lead)","El valor de cada venta","La satisfacción del cliente","El número de impresiones"], c:0, e:"CPL = inversión ÷ número de leads (contactos) conseguidos."},
   {t:7,q:"¿Cuál de los siguientes NO es un KPI de marketing?", o:["CAC","NPS","El organigrama de la empresa","Tasa de conversión"], c:2, e:"El organigrama no es una métrica de rendimiento; CAC, NPS y conversión sí lo son."},
-  {t:7,q:"El NPS (Net Promoter Score) se calcula como:", o:["% de promotores − % de detractores","Ingresos ÷ inversión","Clics ÷ impresiones","Clientes perdidos ÷ totales"], c:0, e:"NPS = % promotores (9-10) − % detractores (0-6)."}
+  {t:7,q:"El NPS (Net Promoter Score) se calcula como:", o:["% de promotores − % de detractores","Ingresos ÷ inversión","Clics ÷ impresiones","Clientes perdidos ÷ totales"], c:0, e:"NPS = % promotores (9-10) − % detractores (0-6)."},
+  {t:3,d:2,q:"Una empresa rebaja tanto sus precios que anula su margen y desata una guerra de precios en el sector. ¿Qué riesgo está materializando?", o:["El riesgo de la diferenciación","El riesgo del liderazgo en costes","El riesgo del enfoque","El riesgo del posicionamiento bidireccional"], c:1, e:"La guerra de precios y la fácil imitación son riesgos típicos del liderazgo en costes."},
+  {t:3,d:2,q:"Mercadona compite con marcas blancas y máximo ahorro; Mercedes-Benz con prestaciones e imagen; Porsche solo en un segmento premium. Respectivamente representan:", o:["Diferenciación, costes y enfoque","Liderazgo en costes, diferenciación y enfoque","Enfoque, diferenciación y costes","Costes, enfoque y diferenciación"], c:1, e:"Mercadona = liderazgo en costes, Mercedes = diferenciación, Porsche = enfoque/alta segmentación."},
+  {t:4,d:2,q:"Una marca tiene fuertemente asociado el beneficio 'asequible'. Le costará mucho que el público le atribuya 'la más alta calidad'. Esto ilustra que:", o:["Es un punto de paridad de categoría","Los PDD/PDP pueden estar negativamente correlacionados (barato vs. calidad)","Es su mantra de marca","Tiene una misión orientada al producto"], c:1, e:"Algunos beneficios se oponen entre sí: difícil ser a la vez 'lo más barato' y 'lo de más calidad'."},
+  {t:4,d:2,q:"'Las pilas que más duran' (Duracell) es un ejemplo de:", o:["Punto de paridad","Punto de diferencia (POD)","Declaración de misión","Segmentación geográfica"], c:1, e:"Es un atributo diferenciador y exclusivo: un POD."},
+  {t:4,d:2,q:"Una agencia de viajes DEBE poder reservar vuelos para que se la considere del sector. Ese atributo es un:", o:["Punto de diferencia","Punto de paridad de categoría","KPI de rendimiento","Riesgo de la diferenciación"], c:1, e:"Atributo esencial para pertenecer a la categoría: punto de paridad de categoría."},
+  {t:4,d:2,q:"Volvo se dirige a familias preocupadas por la seguridad con 'el vehículo más seguro y duradero para tu familia'. Esto es ante todo un ejemplo de:", o:["Propuesta de valor / posicionamiento","Canal de distribución largo","Precio de penetración","Merchandising de seducción"], c:0, e:"Asocia un mercado objetivo con un beneficio diferencial: propuesta de valor y posicionamiento."},
+  {t:5,d:2,q:"Un producto sube de 34€ a 39€ y la demanda crece, pero al pasar a 44€ no cambia. Esto sugiere que:", o:["La demanda es perfectamente elástica","Existen umbrales psicológicos y los precios terminados en 9 transmiten oportunidad","El coste fijo aumentó","El producto está en declive"], c:1, e:"Ilustra las terminaciones en 9 y los precios de referencia / umbrales psicológicos."},
+  {t:5,d:2,q:"Sony lanza una novedad tecnológica a un precio muy alto que irá bajando con el tiempo. Esta estrategia es:", o:["Precio de penetración","Descremado del mercado","Precio de supervivencia","Liderazgo en costes"], c:1, e:"Precio alto inicial que baja con el tiempo: descremado (skimming)."},
+  {t:5,d:2,q:"Una empresa vende un tractor a 100.000€ cuando el estándar cuesta 90.000€, sumando durabilidad, fiabilidad y servicio. ¿Qué método de fijación de precios usa?", o:["Por márgenes sobre el coste","Por retorno de la inversión (ROI)","Por valor percibido","De penetración"], c:2, e:"Suma el valor de los atributos percibidos por el cliente: fijación por valor percibido (caso Caterpillar)."},
+  {t:5,d:2,q:"La insulina mantiene casi las mismas ventas aunque suba mucho su precio. Su demanda es:", o:["Elástica","Inelástica","Unitaria","Inexistente"], c:1, e:"Poca sensibilidad al precio = demanda inelástica."},
+  {t:6,d:2,q:"Una marca de lujo quiere máximo control de su imagen y un único punto de venta por zona. Debe usar distribución:", o:["Intensiva","Selectiva","Exclusiva","Directa de masas"], c:2, e:"Un intermediario por zona y control de imagen: distribución exclusiva."},
+  {t:6,d:2,q:"El fabricante invierte en publicidad masiva para que el consumidor pida el producto en la tienda, y el minorista entonces lo solicita. Es una estrategia:", o:["Push","Pull","De penetración","De descremado"], c:1, e:"Crear demanda final que 'tira' del producto: estrategia pull."},
+  {t:6,d:2,q:"Para vender maquinaria industrial compleja a otras empresas, la herramienta de comunicación más adecuada es:", o:["La publicidad en televisión","La venta personal","La promoción con cupones","Las vallas exteriores"], c:1, e:"B2B técnico de alto valor: venta personal (interacción bidireccional)."},
+  {t:7,d:2,q:"El churn de una empresa sube y su ratio LTV:CAC cae a 1:1. ¿Qué debería priorizar?", o:["Captar más clientes a cualquier coste","Mejorar la retención y/o reducir el CAC","Subir el CAC","Ignorar el dato"], c:1, e:"Con LTV ≈ CAC no hay margen; retener clientes y bajar el coste de captación restablece la rentabilidad."},
+  {t:7,d:2,q:"Un anuncio tiene muchas impresiones pero muy pocos clics. ¿Qué KPI es bajo?", o:["El CTR","El churn","La cuota de mercado","El ticket medio (AOV)"], c:0, e:"Pocos clics respecto a las impresiones = CTR bajo."},
+  {t:7,d:2,q:"Una campaña genera 5€ de ingresos por cada 1€ invertido en anuncios. Su ROAS es:", o:["1 entre 5 (0,2)","5 (5 a 1)","Negativo","No se puede saber"], c:1, e:"ROAS = ingresos ÷ inversión = 5; por cada euro invertido entran 5."},
+  {t:7,d:2,q:"Quieres saber si tus clientes recomendarían la marca a otros. ¿Qué KPI usas?", o:["CAC","NPS","CPM","Cuota de mercado"], c:1, e:"La disposición a recomendar se mide con el NPS."},
+  {t:7,d:2,q:"Si una tienda online tiene una tasa de rebote muy alta, lo más probable es que:", o:["Los usuarios se van enseguida sin interactuar","Las ventas sean excelentes","El LTV sea altísimo","El producto sea de especialidad"], c:0, e:"Bounce rate alto = los visitantes abandonan sin interactuar (mala señal)."}
 ];
 
 const bankDEV = [
@@ -405,7 +442,12 @@ function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random
 function pick(arr,n){return shuffle(arr.slice()).slice(0,n);}
 
 let examVF=[],examMC=[],examDEV=[],resVF=[],resMC=[];
-let currentModo='examen',currentTiempo=2700,intv=null,finalizado=false,restante=0;
+let currentModo='examen',currentTiempo=2700,currentNivel='normal',intv=null,finalizado=false,restante=0;
+function ordenarPool(bank,temas,nivel){
+  const base=bank.filter(x=>temas.includes(x.t));
+  if(nivel==='dificil')return shuffle(base.filter(x=>x.d===2)).concat(shuffle(base.filter(x=>x.d!==2)));
+  return shuffle(base.filter(x=>x.d!==2));
+}
 
 /* ===================== RENDER ===================== */
 function renderExamen(){
@@ -484,7 +526,7 @@ function gradeOne(tipo,i){
     let ok=false;
     if(sel){if(sel.value===cv){ok=true;preg.classList.add('bien');}else{preg.classList.add('mal');const lab=sel.closest('label.opt');lab.classList.add('incorrecta');if(!lab.querySelector('.marca'))lab.insertAdjacentHTML('beforeend','<span class="marca no">✗ tu respuesta</span>');}}
     else preg.classList.add('mal');
-    preg.querySelector('.explicacion').style.display='block';resVF[i]=ok;return ok;
+    preg.querySelector('.explicacion').style.display='block';resVF[i]=sel?ok:null;return ok;
   }else{
     const item=examMC[i];const sel=document.querySelector(`input[name="mc${i}"]:checked`);
     document.querySelectorAll(`input[name="mc${i}"]`).forEach(inp=>{
@@ -494,7 +536,7 @@ function gradeOne(tipo,i){
     let ok=false;
     if(sel){if(item.opts[parseInt(sel.value)].correct){ok=true;preg.classList.add('bien');}else{preg.classList.add('mal');const lab=sel.closest('label.opt');lab.classList.add('incorrecta');if(!lab.querySelector('.marca'))lab.insertAdjacentHTML('beforeend','<span class="marca no">✗ tu respuesta</span>');}}
     else preg.classList.add('mal');
-    preg.querySelector('.explicacion').style.display='block';resMC[i]=ok;return ok;
+    preg.querySelector('.explicacion').style.display='block';resMC[i]=sel?ok:null;return ok;
   }
 }
 
@@ -507,10 +549,10 @@ function pintaTimer(){
 }
 
 /* ===================== INICIAR EXAMEN ===================== */
-function iniciar(poolVF,poolMC,poolDEV,nVF,nMC,nDEV,modo,tiempoSeg){
-  currentModo=modo;currentTiempo=tiempoSeg;finalizado=false;
-  examVF=pick(poolVF,Math.min(nVF,poolVF.length));
-  examMC=pick(poolMC,Math.min(nMC,poolMC.length)).map(it=>({q:it.q,e:it.e,src:it,opts:shuffle(it.o.map((t,idx)=>({text:t,correct:idx===it.c})))}));
+function iniciar(poolVF,poolMC,poolDEV,nVF,nMC,nDEV,modo,tiempoSeg,nivel){
+  currentModo=modo;currentTiempo=tiempoSeg;currentNivel=nivel||'normal';finalizado=false;
+  examVF=shuffle(poolVF.slice(0,Math.min(nVF,poolVF.length)));
+  examMC=shuffle(poolMC.slice(0,Math.min(nMC,poolMC.length))).map(it=>({q:it.q,e:it.e,src:it,opts:shuffle(it.o.map((t,idx)=>({text:t,correct:idx===it.c})))}));
   examDEV=pick(poolDEV,Math.min(nDEV,poolDEV.length));
   resVF=examVF.map(()=>null);resMC=examMC.map(()=>null);
   renderExamen();
@@ -553,16 +595,23 @@ function finalizar(porTiempo){
   document.querySelectorAll('#sec3 .modelo').forEach(m=>m.style.display='block');
 
   const aVF=resVF.filter(x=>x===true).length,aMC=resMC.filter(x=>x===true).length;
+  const wVF=resVF.filter(x=>x===false).length,wMC=resMC.filter(x=>x===false).length;
   const tVF=examVF.length,tMC=examMC.length,tot=aVF+aMC,den=tVF+tMC;
   document.getElementById('scVF').textContent=`${aVF}/${tVF}`;
   document.getElementById('scMC').textContent=`${aMC}/${tMC}`;
   document.getElementById('scTotal').textContent=`${tot}/${den}`;
-  const nota=den?(tot/den*10).toFixed(1):'0.0';
-  let msg=`Nota autocorregida: <strong>${nota}/10</strong>`;
-  const pctTot=den?tot/den:0;
-  if(pctTot>=.9)msg+=' — ¡Excelente!';else if(pctTot>=.7)msg+=' — Buen resultado.';else if(pctTot>=.5)msg+=' — Aprobado, sigue repasando.';else msg+=' — Necesitas repasar los temas.';
+  let penal=0;
+  if(currentNivel==='dificil')penal=wVF*0.5+wMC/3;
+  const neto=Math.max(0,tot-penal);
+  const notaNum=den?neto/den*10:0;const nota=notaNum.toFixed(1);
+  const corte=currentNivel==='dificil'?7:5;
+  let msg=`Nota: <strong>${nota}/10</strong> <span style="font-size:14px">(corte ${corte}/10)</span>`;
+  if(notaNum>=corte)msg+=' — ✅ Aprobado';else msg+=' — ❌ Suspenso';
   if(porTiempo)msg='⏰ Se acabó el tiempo. '+msg;
   document.getElementById('notaFinal').innerHTML=msg;
+  document.getElementById('penalInfo').innerHTML = currentNivel==='dificil'
+    ? `🔴 Nivel difícil · ${tot} aciertos y ${wVF+wMC} fallos · penalización −${penal.toFixed(2)} pts (V/F −0,5 · múltiple −0,33 por fallo).`
+    : `🟢 Nivel normal · sin penalización por fallo.`;
 
   const nFall=resVF.filter(x=>x!==true).length+resMC.filter(x=>x!==true).length;
   const btnR=document.getElementById('btnRepetir');
@@ -582,15 +631,17 @@ document.querySelectorAll('input[name="modo"]').forEach(r=>r.addEventListener('c
 
 document.getElementById('btnComenzar').addEventListener('click',()=>{
   const modo=document.querySelector('input[name="modo"]:checked').value;
+  const nivel=document.querySelector('input[name="nivel"]:checked').value;
   const temas=[...document.querySelectorAll('.tema:checked')].map(c=>parseInt(c.value));
   const aviso=document.getElementById('cfgAviso');
   if(temas.length===0){aviso.textContent='Selecciona al menos un tema.';return;}
   aviso.textContent='';
   const presets={'5':[5,5,1],'10':[10,10,3],'15':[15,15,3]};
   const [nVF,nMC,nDEV]=presets[document.getElementById('longitud').value];
-  const tiempoSeg=parseInt(document.getElementById('tiempo').value);
-  const pVF=bankVF.filter(x=>temas.includes(x.t)),pMC=bankMC.filter(x=>temas.includes(x.t)),pDEV=bankDEV.filter(x=>temas.includes(x.t));
-  iniciar(pVF,pMC,pDEV,nVF,nMC,nDEV,modo,tiempoSeg);
+  let tiempoSeg=parseInt(document.getElementById('tiempo').value);
+  if(nivel==='dificil' && tiempoSeg>0) tiempoSeg=Math.max(300,Math.round(tiempoSeg*0.66/60)*60);
+  const pVF=ordenarPool(bankVF,temas,nivel),pMC=ordenarPool(bankMC,temas,nivel),pDEV=bankDEV.filter(x=>temas.includes(x.t));
+  iniciar(pVF,pMC,pDEV,nVF,nMC,nDEV,modo,tiempoSeg,nivel);
 });
 
 document.getElementById('btnVer').addEventListener('click',()=>{
@@ -605,7 +656,7 @@ document.getElementById('btnRepetir').addEventListener('click',()=>{
   const failVF=examVF.filter((it,i)=>resVF[i]!==true);
   const failMC=examMC.filter((it,i)=>resMC[i]!==true).map(x=>x.src);
   if(failVF.length+failMC.length===0)return;
-  iniciar(failVF,failMC,examDEV.slice(),failVF.length,failMC.length,examDEV.length,currentModo,currentTiempo);
+  iniciar(failVF,failMC,examDEV.slice(),failVF.length,failMC.length,examDEV.length,currentModo,currentTiempo,currentNivel);
 });
 
 document.getElementById('btnReiniciar').addEventListener('click',()=>location.reload());
