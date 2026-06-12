@@ -165,6 +165,7 @@
         <label class="chip"><input type="checkbox" class="tema" value="4" checked> Tema IV</label>
         <label class="chip"><input type="checkbox" class="tema" value="5" checked> Tema V</label>
         <label class="chip"><input type="checkbox" class="tema" value="6" checked> Tema VI</label>
+        <label class="chip"><input type="checkbox" class="tema" value="7" checked> ⭐ KPIs / Métricas</label>
       </div>
     </div>
 
@@ -282,7 +283,8 @@ const bankVF = [
   {t:5,q:"El ciclo de vida del producto tiene cuatro etapas: introducción, crecimiento, madurez y declive.", r:true, e:"Las cuatro etapas clásicas son introducción, crecimiento, madurez y declive."},
   {t:5,q:"En la etapa de introducción los precios suelen ser bajos y las ventas muy altas.", r:false, e:"En introducción los precios son ELEVADOS y las ventas BAJAS."},
   {t:5,q:"En la etapa de declive las ventas y los beneficios caen y algunas empresas abandonan el mercado.", r:true, e:"En el declive caen ventas y beneficios; las empresas sin ventaja abandonan."},
-  {t:5,q:"El precio es la única de las 4 P que genera ingresos; las demás generan costes.", r:true, e:"Producto, distribución y comunicación generan costes; solo el precio aporta ingresos."},  {t:5,q:"El producto esperado se corresponde con los Puntos de Paridad (PDP) y el producto aumentado con los de Diferencia (PDD).", r:true, e:"En la jerarquía de valor, el esperado equivale a los PDP y el aumentado a los PDD."},
+  {t:5,q:"El precio es la única de las 4 P que genera ingresos; las demás generan costes.", r:true, e:"Producto, distribución y comunicación generan costes; solo el precio aporta ingresos."},
+  {t:4,q:"Un buyer persona es una representación semi-ficticia y detallada del cliente ideal, más concreta que el target.", r:true, e:"'Humaniza' al cliente ideal con nombre, edad, motivaciones, retos y redes que usa; más concreto que el target."},  {t:5,q:"El producto esperado se corresponde con los Puntos de Paridad (PDP) y el producto aumentado con los de Diferencia (PDD).", r:true, e:"En la jerarquía de valor, el esperado equivale a los PDP y el aumentado a los PDD."},
   {t:5,q:"Los productos de conveniencia se compran con frecuencia, poca planificación y suelen tener distribución intensiva.", r:true, e:"Compra frecuente, precio bajo, poco esfuerzo y distribución intensiva."},
   {t:5,q:"Los productos de especialidad tienen alta sensibilidad al precio y distribución intensiva.", r:false, e:"Tienen BAJA sensibilidad al precio y distribución EXCLUSIVA."},
   {t:5,q:"El co-branding combina dos o más marcas ya conocidas en un producto o campaña conjunta.", r:true, e:"Une marcas conocidas para posicionar mejor y reducir costes (ej. Intel Inside)."},
@@ -542,7 +544,9 @@ const bankDEV = [
   {t:5,q:"Explica al menos cuatro <strong>estrategias de fijación de precios</strong> (supervivencia, maximización del beneficio, penetración, descremado, liderazgo en calidad) e indica cuándo se usa cada una.",
    modelo:`<ul><li><strong>Supervivencia:</strong> ante competencia feroz; el precio cubre costes variables y algunos fijos. No es sostenible a largo plazo.</li><li><strong>Maximización del beneficio:</strong> se elige el precio que da mayor beneficio (requiere conocer demanda y costes).</li><li><strong>Penetración:</strong> precio bajo para ganar cuota; útil con economías de escala y demanda sensible.</li><li><strong>Descremado:</strong> precio alto inicial en novedades que luego baja (Sony).</li><li><strong>Liderazgo en calidad:</strong> alta calidad percibida a precio asequible (BMW, Starbucks).</li></ul>`},
   {t:4,q:"Explica los <strong>tres elementos de un posicionamiento de marca</strong>: marco competitivo de referencia, puntos de diferencia (PDD) y puntos de paridad (PDP).",
-   modelo:`<ul><li><strong>Marco competitivo de referencia:</strong> con qué marcas se compite y la categoría a la que se pertenece (sustitutivos cercanos / misma necesidad del consumidor).</li><li><strong>Puntos de diferencia (PDD):</strong> atributos valorados, exclusivos, que el cliente no encuentra igual en la competencia.</li><li><strong>Puntos de paridad (PDP):</strong> atributos compartidos con la categoría (de categoría, correlacionales o competitivos), necesarios para 'pertenecer'.</li></ul>`}
+   modelo:`<ul><li><strong>Marco competitivo de referencia:</strong> con qué marcas se compite y la categoría a la que se pertenece (sustitutivos cercanos / misma necesidad del consumidor).</li><li><strong>Puntos de diferencia (PDD):</strong> atributos valorados, exclusivos, que el cliente no encuentra igual en la competencia.</li><li><strong>Puntos de paridad (PDP):</strong> atributos compartidos con la categoría (de categoría, correlacionales o competitivos), necesarios para 'pertenecer'.</li></ul>`},
+  {t:4,q:"Explica la diferencia entre <strong>target y buyer persona</strong> y por qué es útil definir un buyer persona (como en la guía del proyecto).",
+   modelo:`<p><strong>Target:</strong> el segmento al que se dirige la empresa, descrito con variables generales (geográficas, demográficas, psicográficas). Es amplio y estadístico.</p><p><strong>Buyer persona:</strong> perfil semi-ficticio y detallado del cliente ideal: nombre, edad, retos, qué redes sociales usa y qué busca. Es más concreto y «humano».</p><p><strong>Utilidad:</strong> permite personalizar el mensaje, los productos y los canales, y empatizar mejor con el cliente que con un target genérico.</p>`}
 ];
 
 /* ===================== ESTADO Y UTILIDADES ===================== */
